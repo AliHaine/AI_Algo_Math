@@ -121,20 +121,20 @@ b = 3
 
 In the school subject, we were given the followings 3 formulas
 
-$$\hat{y}^{(i)} = \theta_1 * x + \theta_0$$
+$$\hat{y}^{(i)} = \theta_1 \cdot x + \theta_0$$
 
-$$\theta_0 = \alpha * \frac{1}{m} \sum_{i=0}^{m-1} \left( \hat{y}^{(i)} - y^{(i)} \right)$$
+$$\theta_0 = \alpha \cdot \frac{1}{m} \sum_{i=0}^{m-1} \left( \hat{y}^{(i)} - y^{(i)} \right)$$
 
 $$\theta_1 = \alpha \cdot \frac{1}{m} \sum_{i=0}^{m-1} \left( \hat{y}^{(i)} - y^{(i)} \right) \cdot x^{(i)}$$
 
 ### The first one
-Used to provide a price prediction on a given parameter (milleage).
+Used to provide a price prediction on a given parameter (milleage)
 
 $$\theta_0$$ and $$\theta_1$$ are values previously calculated by their respective formula.
 $$x$$ correspond to the input value (milleage)
 
 ### Second one
-Is used to train our model and calcul the correct values for $$\theta_0$$ and $$\theta_1$$
+Is used to train our model and calcul the values for $$\theta_0$$
 
 $$\alpha$$ correspond to the 'learning rate' (something like 0.001 or 0.01), the learning rate controls, how big each update step is. A high rate may converge fast but can miss the best result; a low rate is more precise but slower.
 $$\hat{y}^{(i)}$$ correspond to the result of the first formula we saw earlier
@@ -143,5 +143,11 @@ $$y^{(i)}$$ correspond to the real result (the wanted result)
 So basically, what the second formula does is compare $$\hat{y}^{(i)}$$ (the estimate from our AI) with $$y^{(i)}$$ (the expected result) measure the difference, and calculate an 'error' gap. For example, if $$\hat{y}^{(i)}$$ returns 15 but $$y^{(i)}$$ equals 20, we know the error gap is -5. The ai will take this into account and improve in the next iteration.
 
 ### Last one
+Is used to train our model and calcul the values for $$\theta_1$$
 
+$$\alpha$$ correspond to the 'learning rate'
+$$\hat{y}^{(i)}$$ correspond to the result of the first formula we saw earlier
+$$y^{(i)}$$ correspond to the real result
+x correspond to the given parameter (milleage)
 
+Pretty similar to the second formula, but for the calucation of $$\theta_1$$

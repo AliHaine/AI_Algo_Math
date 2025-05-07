@@ -13,17 +13,16 @@ try:
         reader = csv.reader(file)
         next(reader)
         for row in reader:
-            convert_rows = [int(value) for value in row]
+            convert_rows = [int(values) for values in row]
+            convert_rows[0] /= 1000000
             rows.append(convert_rows)
-        max_km = max(row[0] for row in rows)
-        normalized_rows = [(km / max_km, price) for km, price in rows]
-        rows = normalized_rows
+        #max_km = max(row[0] for row in rows)
+        # normalized_rows = [(km / max_km, price) for km, price in rows]
+        #rows = normalized_rows
         m = len(rows)
 except FileNotFoundError:
     print("File not found")
     exit(1)
-
-print(rows)
 
 def prediction(milleage):
     return theta0 + theta1 * milleage
@@ -41,4 +40,8 @@ for i in range(iterations):
     theta1 -= learning_rate * (1 / m) * error_t1
 
 
-print(theta0, theta1)
+try:
+    with open('./result.txt', 'w') as file:
+        file.write(f"{theta0},{theta1}")
+except:
+    print("Result cant be saved")
