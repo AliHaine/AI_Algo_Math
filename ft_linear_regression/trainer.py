@@ -39,10 +39,17 @@ for i in range(iterations):
     theta0 -= learning_rate * (1 / m) * error_t0
     theta1 -= learning_rate * (1 / m) * error_t1
 
+for row in rows:
+    predict_error = row[1] - estimatePrice(row[0])
+    precision += (predict_error ** 2) / m
+
+mse_denormalized = precision * (max_price ** 2)
+rmse = mse_denormalized ** 0.5
+rmse_percentage = (rmse / max_price) * 100
 
 try:
     with open('./result.txt', 'w') as file:
-        file.write(f"{theta0},{theta1},{max_km},{max_price},{precision}")
+        file.write(f"{theta0},{theta1},{max_km},{max_price},{rmse_percentage:.2f}")
 except:
     print("Result cant be saved")
 

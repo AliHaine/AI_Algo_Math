@@ -45,4 +45,4 @@ plt.plot(x_vals, predicted_y, color='red', label='Regression line')
 plt.legend()
 plt.show()
 
-print(f"Precision: {precision}")
+print(f"Precision (RMSE) percentage error: {precision}%")
