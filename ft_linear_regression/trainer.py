@@ -5,8 +5,10 @@ rows = []
 m = 0
 theta0 = 0.0
 theta1 = 0.0
-learning_rate = 0.001
-iterations = 1000
+learning_rate = 0.01
+iterations = 10000
+max_km = 0
+max_price = 0
 
 try:
     with open('./data.csv') as file:
@@ -14,11 +16,10 @@ try:
         next(reader)
         for row in reader:
             convert_rows = [int(values) for values in row]
-            convert_rows[0] /= 1000000
             rows.append(convert_rows)
-        #max_km = max(row[0] for row in rows)
-        # normalized_rows = [(km / max_km, price) for km, price in rows]
-        #rows = normalized_rows
+        max_km = max(row[0] for row in rows)
+        max_price = max(row[1] for row in rows)
+        rows = [[km / max_km, price / max_price] for km, price in rows]
         m = len(rows)
 except FileNotFoundError:
     print("File not found")
@@ -42,6 +43,6 @@ for i in range(iterations):
 
 try:
     with open('./result.txt', 'w') as file:
-        file.write(f"{theta0},{theta1}")
+        file.write(f"{theta0},{theta1},{max_km},{max_price}")
 except:
     print("Result cant be saved")
