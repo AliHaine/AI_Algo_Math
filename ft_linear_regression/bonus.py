@@ -7,6 +7,7 @@ t0 = 0
 t1 = 0
 max_km = 0
 max_price = 0
+precision = 0
 
 try:
     with open('./data.csv') as file:
@@ -27,6 +28,7 @@ try:
         t1 = float(line[1])
         max_km = float(line[2])
         max_price = float(line[3])
+        precision = float(line[4])
 except FileNotFoundError:
     print("File not found")
     exit(1)
@@ -42,3 +44,5 @@ plt.plot(x_vals, predicted_y, color='red', label='Regression line')
 
 plt.legend()
 plt.show()
+
+print(f"Precision: {precision}")
