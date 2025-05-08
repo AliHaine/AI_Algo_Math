@@ -5,6 +5,8 @@ max_price = 0
 
 try:
     km_input = int(input('Enter a milleage (KM): '))
+    if km_input > 1000000:
+        exit(1)
 except:
     print('Invalid input')
     exit(1)

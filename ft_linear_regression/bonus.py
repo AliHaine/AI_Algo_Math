@@ -1,5 +1,4 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import csv
 
 rows = []
@@ -37,12 +36,13 @@ except FileNotFoundError:
     print("File not found")
     exit(1)
 
-points = np.array(rows)
-plt.scatter(points[:, 0], points[:, 1], label='Data')
+x_vals = [row[0] for row in rows]
+y_vals = [row[1] for row in rows]
+
+plt.scatter(x_vals, y_vals, label='Data')
 plt.xlabel('milleage')
 plt.ylabel('price')
 
-x_vals = [row[0] for row in rows]
 predicted_y = [(t0 + t1 * (x / max_km)) * max_price for x in x_vals]
 plt.plot(x_vals, predicted_y, color='red', label='Regression line')
 
