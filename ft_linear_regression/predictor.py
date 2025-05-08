@@ -12,10 +12,14 @@ except:
 try:
     with open('./result.txt') as file:
         line = file.readline().split(',')
-        t0 = float(line[0])
-        t1 = float(line[1])
-        max_km = float(line[2])
-        max_price = float(line[3])
+        try:
+            t0 = float(line[0])
+            t1 = float(line[1])
+            max_km = float(line[2])
+            max_price = float(line[3])
+        except:
+            print('Invalid results')
+            exit(1)
 except FileNotFoundError:
     print("File not found")
     exit(1)

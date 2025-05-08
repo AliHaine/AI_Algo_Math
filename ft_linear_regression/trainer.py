@@ -52,5 +52,6 @@ try:
         file.write(f"{theta0},{theta1},{max_km},{max_price},{rmse_percentage:.2f}")
 except:
     print("Result cant be saved")
+    exit(1)
 
 print("Process finished, result computed in result.txt")
