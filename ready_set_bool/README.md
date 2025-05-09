@@ -40,3 +40,16 @@ Binary multiplicatoin works just like decimal multiplication:
 - You shift b right (b >>= 1) to check the next bit
 
 ![ex01 image](public/ex01.png)
+
+## ex02 (graycode)
+
+Gray code is a type of binary encoding with a simple but powerful rule: only one bit changesat a time when incrementing by one unit.
+This can be very useful in many contexts, as it helps avoid  'transitional states' that occur in standard cinary encoding.
+
+For example, in standard binary encoding, when incrementing from 1 to 2:
+0001 (1)
+0000 (?) -> Set the 1 to 0 (transition)
+0010 (2) -> End by setting a 1 to create the number 2
+
+This intermediate state (0000) doesn't represent either value and may result in undefined behavior, which can be problematic or even damaging in certain context and critical apps.
+
