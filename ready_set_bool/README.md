@@ -2,7 +2,7 @@
 
 _Computer-related mathematics with Boolean Algebra and Sets Theory_
 
-## ex00 and ex01 (bitwise)
+## ex00 and ex01 - Bitwise
 
 For this two exercices, we have to implement the operator + (addition) and * (multiplication) (with positif numbers) using bitwise operator, in this case, ^ and <<.
 
@@ -41,7 +41,7 @@ Binary multiplicatoin works just like decimal multiplication:
 
 ![ex01 image](public/ex01.png)
 
-## ex02 (graycode)
+## ex02 - Graycode
 
 Gray code is a type of binary encoding with a simple but powerful rule: only one bit changesat a time when incrementing by one unit.
 This can be very useful in many contexts, as it helps avoid  'transitional states' that occur in standard cinary encoding.
@@ -52,4 +52,19 @@ For example, in standard binary encoding, when incrementing from 1 to 2:
 0010 (2) -> End by setting a 1 to create the number 2
 
 This intermediate state (0000) doesn't represent either value and may result in undefined behavior, which can be problematic or even damaging in certain context and critical apps.
+
+## ex03 - Boolean evaluation
+
+_Write a function that takes as input a string that contains a propositional formula in reverse polish notation, evaluates this formula, then returns the result_
+
+| Symbol | Mathematical Equivalent | Description               | Bitwise Equivalent |
+|--------|--------------------------|--------------------------|---------------------|
+| 0      | ⊥                        | false                    | 0                  |
+| 1      | ⊤                        | true                     | 1                  |
+| !      | ¬                        | Negation                 | ~                  |
+| &      | ∧                        | Conjunction              | & (AND)            |
+| \|      | ∨                        | Disjunction             | \| (OR)            |
+| ^      | ⊕                        | Exclusive disjunction   | ^   (XOR)           |
+| >      | ⇒                        | Material condition       | !a \| b (no native)|
+| =      | ⇔                        | Logical equivalence     | a == b             |
 
