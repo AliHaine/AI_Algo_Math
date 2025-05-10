@@ -68,3 +68,15 @@ _Write a function that takes as input a string that contains a propositional for
 | >      | ⇒                        | Material condition       | !a \| b (no native)|
 | =      | ⇔                        | Logical equivalence     | a == b             |
 
+This exercice is not as difficult as it may seem at first. If you're unfamiliar with Reverse Polish Notation (RPN) you can [read more about it here](https://en.wikipedia.org/wiki/Reverse_Polish_notation)
+
+So the goal is to evaluate bitwise expressions written in RPN using specific symbol for operations. 
+Example:
+11| Result to 1, which is the equivalent of 1 | 1 (Disjunction, bitwise OR).
+More complexe example: 
+10|111=&=
+10| → 1 | 0 = 1
+11= → 1 == 1 = 1
+11& → 1 & 1 = 1
+11= → 1 == 1 = 1
+Final result 1
