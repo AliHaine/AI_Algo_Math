@@ -6,21 +6,11 @@
 #include <map>
 #include <algorithm>
 
-std::list<char> allowedOperators = {'&', '|', '^', '=', '>'};
-
 int power(int number, int power) {
     int result = number;
     while (--power > 0)
         result *= number;
     return result;
-}
-
-bool is_allowed_operator(char op) {
-    for (char c : allowedOperators) {
-        if (c == op)
-            return true;
-    }
-    return false;
 }
 
 bool eval_formula(std::string formula) {
@@ -55,6 +45,19 @@ bool eval_formula(std::string formula) {
     return main_stack.top();
 }
 
+void print_header(std::map<char, int> &usedVar) {
+    std::cout << "| ";
+    for (auto it = usedVar.begin(); it != usedVar.end(); ++it)
+        std::cout << it->first << " | ";
+    std::cout << "= |" << std::endl;
+    for (int i = 0; i <= usedVar.size(); i++)
+        std::cout << "|---";
+    std::cout << "|" << std::endl;
+    for (int i = 0; i <= usedVar.size(); i++)
+        std::cout << "| 0 ";
+    std::cout << "|" << std::endl;
+}
+
 void print_truth_table(std::string formula) {
     std::map<char, int> usedVar;
     std::string currentFormula = formula;
@@ -67,24 +70,26 @@ void print_truth_table(std::string formula) {
         }
     }
 
-    //header
-    std::cout << "| ";
-    for (const auto& [key, value] : usedVar)
-        std::cout << key << " | ";
-    std::cout << "= |" << std::endl;
-    for (int i = 0; i <= usedVar.size(); i++)
-        std::cout << "|---";
-    std::cout << "|" << std::endl;
+    print_header(usedVar);
 
-    //fill
     maxRows = power(2, usedVar.size());
-    for (int i = 0; i < maxRows; i++) {
-        for (const auto& [key, value] : usedVar) {
-            std::replace(currentFormula.begin(),currentFormula.end(), key, (char)(value+48));
+    // Build formula
+    for (int i = 0; i < maxRows-1; i++) {
+        for (auto it = usedVar.rbegin(); it != usedVar.rend(); ++it) {
+            if (it->second == 0) {
+                it->second = 1;
+                while (it-- != usedVar.rbegin()) {
+                    it->second = 0;
+                }
+                break;
+            }
         }
+        for (auto it = usedVar.begin(); it != usedVar.end(); ++it)
+            std::replace(currentFormula.begin(),currentFormula.end(), it->first, (char)(it->second+48));
         std::cout << "| ";
-        for (const auto& [key, value] : usedVar)
-            std::cout << value << " | ";
+
+        for (auto it = usedVar.begin(); it != usedVar.end(); ++it)
+            std::cout << it->second << " | ";
         std::cout << eval_formula(currentFormula) << " |" << std::endl;
         currentFormula = formula;
     }
