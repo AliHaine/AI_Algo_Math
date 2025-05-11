@@ -9,9 +9,6 @@ void tests_simple();
 void tests_complex();
 void tests_error();
 
-char symbols[] = {'0','1','!','&','|','^','>','='};
-std::string equivalents[] = {"⊥","⊤","¬","^","∨","⊕","⇒","⇔"};
-
 bool eval_formula(std::string formula) {
     std::stack<int> main_stack;
     std::unordered_map<char, std::function<char(int, int)>> operator_map = {
