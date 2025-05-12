@@ -80,3 +80,39 @@ More complexe example:
 11& → 1 & 1 = 1
 11= → 1 == 1 = 1
 Final result 1
+
+## ex04 - Truth table
+
+_Write a function that takes as input a string that contains a propositional formula in reverse polish notation, and writes its truth table on the standard output_
+
+A truth table is a diragram showing how the truth or falsity of a proposition varies with that of its components (in our case, variables). This concept is fundamental in many domains, especially in hardwar logic design and artificial intelligence.
+
+### Example 
+_formula AB&C| equivalent to (A ∧ B) ∨ C_
+| A | B | C | = |
+|---|---|---|---|
+| 0 | 0 | 0 | 0 |
+| 0 | 0 | 1 | 1 |
+| 0 | 1 | 0 | 0 |
+| 0 | 1 | 1 | 1 |
+| 1 | 0 | 0 | 0 |
+| 1 | 0 | 1 | 1 |
+| 1 | 1 | 0 | 1 |
+| 1 | 1 | 1 | 1 |
+
+The number of rows in the truth table is calculated as $$2^N$$. 
+Where N is the number of distinct variables (in this case 3), so we have $$2^3$$ = 8 rows. Every possible combination of input values is precomputed.
+
+### Algorithm to generate a Truth table
+
+To build a truth table:
+- Count the number of distinct variables (3)
+- Compute the number of rows ($$2^3$$ = 8)
+- Start with the row | 0 | 0 | 0 |
+- For each step (from 0 to $$2^n$$-1), convert the step number to binary and use it to fill the table
+- 
+Or conceptually:
+- Try to set a 1 at the rightmost possible position.
+- Reset all bits to the right of tat position to 0.
+
+This generates all binary combinations in order, which are used to fill the truth table.
