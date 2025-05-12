@@ -28,13 +28,21 @@ try:
             t1 = float(line[1])
             max_km = float(line[2])
             max_price = float(line[3])
-            precision = float(line[4])
+            mae = line[4]
+            rmse = line[5]
+            rmse_percent = float(line[6])
+            r_squared = float(line[7])
         except:
             print('Invalid results')
             exit(1)
 except FileNotFoundError:
     print("File not found")
     exit(1)
+
+print(f"Default precision result: {mae}")
+print(f"Precision with the formula Root mean square deviation (RMSE) error: {rmse}")
+print(f"Precision with the formula Root mean square deviation (RMSE) percentage error: {rmse_percent}%")
+print(f"Precision with the formula Coefficient of Determination (R²) : {r_squared}")
 
 x_vals = [row[0] for row in rows]
 y_vals = [row[1] for row in rows]
@@ -48,5 +56,3 @@ plt.plot(x_vals, predicted_y, color='red', label='Regression line')
 
 plt.legend()
 plt.show()
-
-print(f"Precision (RMSE) percentage error: {precision}%")

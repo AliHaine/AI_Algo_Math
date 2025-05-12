@@ -20,7 +20,7 @@ try:
             max_km = float(line[2])
             max_price = float(line[3])
         except:
-            print('Invalid results')
+            print('0')
             exit(1)
 except FileNotFoundError:
     print("File not found")
