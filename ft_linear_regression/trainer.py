@@ -1,4 +1,5 @@
 import csv
+import utils
 
 rows = []
 
@@ -29,6 +30,17 @@ try:
 except FileNotFoundError:
     print("File not found")
     exit(1)
+
+
+print(f"\n{utils.LINE}")
+print(f"{utils.BOLD}{utils.CYAN}⚙️  Training Configuration{utils.RESET}")
+print(f"{utils.LINE}")
+print(f"{utils.YELLOW}➤ Learning Rate:           {utils.RESET}{learning_rate}")
+print(f"{utils.YELLOW}➤ Iterations:              {utils.RESET}{iterations}")
+print(f"{utils.YELLOW}➤ Total Values to Compute: {utils.RESET}{m}")
+print(f"{utils.GREEN}➤ Max Mileage (km):        {utils.RESET}{max_km} 🌟")
+print(f"{utils.GREEN}➤ Max Price (€):           {utils.RESET}{max_price} 🌟")
+print(f"{utils.LINE}")
 
 def estimatePrice(milleage):
     return theta0 + theta1 * milleage
@@ -64,5 +76,4 @@ try:
 except:
     print("Result cant be saved")
     exit(1)
-
-print("Process finished, result computed in result.txt")
+print(f"{utils.BOLD}{utils.GREEN}Process finished, result computed in {utils.YELLOW}result.txt")
