@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import csv
+import utils
 
 rows = []
 t0 = 0
@@ -39,10 +40,14 @@ except FileNotFoundError:
     print("File not found")
     exit(1)
 
-print(f"Default precision result: {mae}")
-print(f"Precision with the formula Root mean square deviation (RMSE) error: {rmse}")
-print(f"Precision with the formula Root mean square deviation (RMSE) percentage error: {rmse_percent}%")
-print(f"Precision with the formula Coefficient of Determination (R²) : {r_squared}")
+print(f"\n{utils.LINE}")
+print(f"{utils.BOLD}{utils.CYAN}📊  Model Evaluation Metrics{utils.RESET}")
+print(f"{utils.LINE}")
+print(f"{utils.GREEN}➤ Mean Absolute Error (MAE):          {utils.RESET}{mae}")
+print(f"{utils.YELLOW}➤ Root Mean Square Error (RMSE):      {utils.RESET}{rmse} 🌟")
+print(f"{utils.YELLOW}➤ RMSE Percentage Error:              {utils.RESET}{rmse_percent:.2f}% 🌟")
+print(f"{utils.RED}➤ Coefficient of Determination (R²):  {utils.RESET}{r_squared:.4f} 🌟")
+print(f"{utils.LINE}\n")
 
 x_vals = [row[0] for row in rows]
 y_vals = [row[1] for row in rows]
