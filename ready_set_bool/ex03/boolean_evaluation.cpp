@@ -19,22 +19,29 @@ bool eval_formula(std::string formula) {
         {'>', [](int a, int b) { return (!a) | b; }},
     };
 
-    int a;
-    int b;
+    int right;
+    int left;
     for (char c : formula) {
         if (c == '1' || c == '0') {
             main_stack.push(c - '0');
+            continue;
+        }
+        if (c == '!') {
+            right = main_stack.top(); main_stack.pop();
+            main_stack.push(!right);
+            if (FULL_CALC)
+                std::cout << "Calculating " << right << " with ! result: " << main_stack.top() << std::endl;
             continue;
         }
         if (!operator_map.count(c) || main_stack.size() < 2) {
             std::cout << "An error occurred with your formula, please check it." << std::endl;
             exit(1);
         }
-        a = main_stack.top(); main_stack.pop();
-        b = main_stack.top(); main_stack.pop();
-        main_stack.push(operator_map[c](a, b));
+        right = main_stack.top(); main_stack.pop();
+        left = main_stack.top(); main_stack.pop();
+        main_stack.push(operator_map[c](left, right));
         if (FULL_CALC)
-            std::cout << "Calculating " << a << " " << b << " with " << c << " result: " << main_stack.top() << std::endl;
+            std::cout << "Calculating " << left << " " << right << " with " << c << " result: " << main_stack.top() << std::endl;
     }
     if (main_stack.size() != 1) {
         std::cout << "An error occurred with your formula, please check it." << std::endl;
@@ -67,6 +74,9 @@ void tests_simple() {
     std::cout << eval_formula("01>") << std::endl;     // 0 ⇒ 1 = 1
     std::cout << eval_formula("11>") << std::endl;     // 1 ⇒ 1 = 1
     std::cout << eval_formula("00>") << std::endl;     // 0 ⇒ 0 = 1
+
+    std::cout << eval_formula("10|!") << std::endl;
+    std::cout << eval_formula("10>!1=") << std::endl;
 }
 
 void tests_complex() {
