@@ -13,6 +13,64 @@ bool isOperator(char c) {
     return c == '&' || c == '>' || c == '|';
 }
 
+void isValid(std::string formula) {
+    std::stack<int> test_stack;
+    std::unordered_map<char, std::function<char(int, int)>> operator_map = {
+        {'&', [](int a, int b) { return a & b; }},
+        {'|', [](int a, int b) { return a | b; }},
+        {'^', [](int a, int b) { return a ^ b; }},
+        {'=', [](int a, int b) { return a == b; }},
+        {'>', [](int a, int b) { return (!a) | b; }},
+    };
+
+    int a;
+    int b;
+    for (char c : formula) {
+        if (c == '!')
+            continue;
+        if (isVariable(c)) {
+            test_stack.push('0');
+            continue;
+        }
+        if (!operator_map.count(c) || test_stack.size() < 2) {
+            std::cout << std::endl << "An error occurred with your formula, please check it." << std::endl;
+            exit(1);
+        }
+        a = test_stack.top(); test_stack.pop();
+        b = test_stack.top(); test_stack.pop();
+        test_stack.push(operator_map[c](a, b));
+    }
+    if (test_stack.size() != 1) {
+        std::cout << std::endl << "An error occurred with your formula, please check it." << std::endl;
+        exit(1);
+    }
+}
+
+void negatParsing(void) {
+    std::stack<char> tmpStack;
+    char current;
+
+    tmpStack.push(mainStack.top() == '&' ? '|' : '&');
+    mainStack.pop();
+
+    for (int i = 0; i < 2; i++) {
+        current = mainStack.top();
+        if (isVariable(current)) {
+            tmpStack.push('!');
+            tmpStack.push(current);
+            mainStack.pop();
+        } else {
+            i = -1;
+            tmpStack.push(current == '&' ? '|' : '&');
+            mainStack.pop();
+        }
+    }
+
+    while(!tmpStack.empty()) {
+        mainStack.push(tmpStack.top());
+        tmpStack.pop();
+    }
+}
 
 std::string negation_normal_form(std::string formula) {
     std::string convertedFormula;
@@ -46,6 +104,8 @@ std::string negation_normal_form(std::string formula) {
         }}
     };
 
+    isValid(formula);
+
     char a;
     char b;
     for (char c : formula) {
@@ -58,19 +118,10 @@ std::string negation_normal_form(std::string formula) {
             convertor_map[c](a, b);
             continue;
         } else if (c == '!') {
-            char top = mainStack.top(); mainStack.pop();
-            if (!isVariable(mainStack.top())) {
-                mainStack.push(top);
+            if (isVariable(mainStack.top())) {
                 mainStack.push('!');
-            } else if (top == '&' || top == '|') {
-                char right = mainStack.top(); mainStack.pop();
-                char left = mainStack.top(); mainStack.pop();
-
-                mainStack.push(left);
-                mainStack.push('!');
-                mainStack.push(right);
-                mainStack.push('!');
-                mainStack.push(top == '&' ? '|' : '&');
+            } else if (mainStack.top() == '&' || mainStack.top() == '|') {
+                negatParsing();
             }
         } else {
             std::cout << "An error occurred with your formula, please check it." << std::endl;
@@ -88,7 +139,7 @@ std::string negation_normal_form(std::string formula) {
 
 
 int main(void) {
-    std::cout << negation_normal_form("AB|C&!") << std::endl;
+    std::cout << negation_normal_form("AB|C&Z&!") << std::endl;
 
     return 0;
 }
