@@ -101,6 +101,6 @@ void print_truth_table(std::string formula) {
 }
 
 int main(void) {
-    print_truth_table("AB&C|");
+    print_truth_table("A!B&C|");
     return 0;
 }
