@@ -33,7 +33,7 @@ void isValid(std::string formula) {
             continue;
         }
         if (!operator_map.count(c) || test_stack.size() < 2) {
-            std::cout << std::endl << "An error occurred with your formula, please check it." << std::endl;
+            std::cout << std::endl << "An error occurred with your formula, please check it (size)" << std::endl;
             exit(1);
         }
         a = test_stack.top(); test_stack.pop();
@@ -41,7 +41,7 @@ void isValid(std::string formula) {
         test_stack.push(operator_map[c](a, b));
     }
     if (test_stack.size() != 1) {
-        std::cout << std::endl << "An error occurred with your formula, please check it." << std::endl;
+        std::cout << std::endl << "An error occurred with your formula, please check it (remind)" << std::endl;
         exit(1);
     }
 }
@@ -49,6 +49,7 @@ void isValid(std::string formula) {
 void negatParsing(void) {
     std::stack<char> tmpStack;
     char current;
+    char prevCurrent;
 
     tmpStack.push(mainStack.top() == '&' ? '|' : '&');
     mainStack.pop();
@@ -61,8 +62,13 @@ void negatParsing(void) {
             mainStack.pop();
         } else {
             i = -1;
-            tmpStack.push(current == '&' ? '|' : '&');
             mainStack.pop();
+            prevCurrent = mainStack.top();
+            if (prevCurrent == '!') {
+                tmpStack.push(current);
+                break;
+            }
+            tmpStack.push(current == '&' ? '|' : '&');
         }
     }
 
@@ -104,7 +110,7 @@ std::string negation_normal_form(std::string formula) {
         }}
     };
 
-    isValid(formula);
+    //isValid(formula);
 
     char a;
     char b;
@@ -139,7 +145,28 @@ std::string negation_normal_form(std::string formula) {
 
 
 int main(void) {
-    std::cout << negation_normal_form("AB|C&Z&!") << std::endl;
+
+    /*std::cout << negation_normal_form("AB&!") << std::endl;;
+    // A!B!|
+    std::cout << negation_normal_form("AB|!") << std::endl;;
+    // A!B!&
+    std::cout << negation_normal_form("AB>") << std::endl;;
+    // A!B|
+    std::cout << negation_normal_form("AB=") << std::endl;;
+    // AB&A!B!&|
+    std::cout << negation_normal_form("AB|C&!") << std::endl;;
+    // A!B!&C!|
+
+    std::cout << negation_normal_form("AB|C&Z&!") << std::endl;*/
+
+    //std::cout << negation_normal_form("AB|C&!Z&!") << std::endl;
+
+    //std::cout << negation_normal_form("AB&C!") << std::endl;
+
+    //std::cout << negation_normal_form("AB|C&!Z&!") << std::endl;
+
+    //std::cout << negation_normal_form("AB>C!") << std::endl;
+
 
     return 0;
 }
