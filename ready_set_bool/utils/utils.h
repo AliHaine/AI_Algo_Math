@@ -1,19 +1,26 @@
 #ifndef UTILS_H
 #define UTILS_H
+#include <iostream>
+
+
     struct Node {
         char value;
         Node* left = nullptr;
         Node* right = nullptr;
 
         Node(char val) : value(val) {}
-    }
+    };
 
     bool isVariable(char c) {
-        return (c >= 'A' && c <= 'Z');
+        return (c >= 'A' && c <= 'Z') || c == '0' || c == '1';
+    }
+
+    bool isConstant(char c) {
+       return c == '0' || c == '1';
     }
 
     bool isOperator(char c) {
-        return c == '&' || c == '>' || c == '|' || c == '^' || c == '=' || c == '0' || c == '1';
+        return c == '&' || c == '>' || c == '|' || c == '^' || c == '=';
     }
 
     bool isUnary(char c) {
@@ -45,11 +52,11 @@
         return stack_size == 1;
     }
 
-    void treeBuilder(const std::string formula) {
+    Node* treeBuilder(const std::string formula) {
         std::stack<Node*> stack;
 
         if (!isValidRPN(formula)) {
-            std::cout << "The formula " << formula " is not valid" << std::endl;
+            std::cout << "The formula " << formula << " is not valid" << std::endl;
             exit(1);
         }
 
@@ -70,5 +77,6 @@
                 stack.push(newNode);
             }
         }
+        return stack.top();
     }
 #endif

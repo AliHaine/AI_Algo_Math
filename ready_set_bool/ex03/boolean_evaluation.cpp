@@ -2,52 +2,41 @@
 #include <stack>
 #include <functional>
 #include <unordered_map>
+#include "../utils/utils.h"
 
 #define FULL_CALC true
+
+std::unordered_map<char, std::function<int(int, int)>> operator_map = {
+    {'&', [](int a, int b) { return a & b; }},
+    {'|', [](int a, int b) { return a | b; }},
+    {'^', [](int a, int b) { return a ^ b; }},
+    {'=', [](int a, int b) { return a == b; }},
+    {'>', [](int a, int b) { return (!a) | b; }},
+};
 
 void tests_simple();
 void tests_complex();
 void tests_error();
 
-bool eval_formula(std::string formula) {
-    std::stack<int> main_stack;
-    std::unordered_map<char, std::function<char(int, int)>> operator_map = {
-        {'&', [](int a, int b) { return a & b; }},
-        {'|', [](int a, int b) { return a | b; }},
-        {'^', [](int a, int b) { return a ^ b; }},
-        {'=', [](int a, int b) { return a == b; }},
-        {'>', [](int a, int b) { return (!a) | b; }},
-    };
+void postOrder(Node* node) {
+    if (!node) return;
+    postOrder(node->left);
+    postOrder(node->right);
+    std::cout << node->value << " ";
+}
 
-    int right;
-    int left;
-    for (char c : formula) {
-        if (c == '1' || c == '0') {
-            main_stack.push(c - '0');
-            continue;
-        }
-        if (c == '!') {
-            right = main_stack.top(); main_stack.pop();
-            main_stack.push(!right);
-            if (FULL_CALC)
-                std::cout << "Calculating " << right << " with ! result: " << main_stack.top() << std::endl;
-            continue;
-        }
-        if (!operator_map.count(c) || main_stack.size() < 2) {
-            std::cout << "An error occurred with your formula, please check it." << std::endl;
-            exit(1);
-        }
-        right = main_stack.top(); main_stack.pop();
-        left = main_stack.top(); main_stack.pop();
-        main_stack.push(operator_map[c](left, right));
-        if (FULL_CALC)
-            std::cout << "Calculating " << left << " " << right << " with " << c << " result: " << main_stack.top() << std::endl;
-    }
-    if (main_stack.size() != 1) {
-        std::cout << "An error occurred with your formula, please check it." << std::endl;
-        exit(1);
-    }
-    return main_stack.top();
+int calcFromTree(Node* node) {
+    if (isConstant(node->value))
+        return node->value - 48;
+    else if (isUnary(node->value))
+        return !(node->left->value);
+    else
+        return operator_map[node->value](calcFromTree(node->left), calcFromTree(node->right));
+}
+
+bool eval_formula(std::string formula) {
+    Node* tree = treeBuilder(formula);
+    return calcFromTree(tree);
 }
 
 int main(void) {
