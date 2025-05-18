@@ -4,39 +4,12 @@
 #include <unordered_map>
 #include "../utils/utils.h"
 
-#define FULL_CALC true
-
-std::unordered_map<char, std::function<int(int, int)>> operator_map = {
-    {'&', [](int a, int b) { return a & b; }},
-    {'|', [](int a, int b) { return a | b; }},
-    {'^', [](int a, int b) { return a ^ b; }},
-    {'=', [](int a, int b) { return a == b; }},
-    {'>', [](int a, int b) { return (!a) | b; }},
-};
-
 void tests_simple();
 void tests_complex();
 void tests_error();
 
-void postOrder(Node* node) {
-    if (!node) return;
-    postOrder(node->left);
-    postOrder(node->right);
-    std::cout << node->value << " ";
-}
-
-int calcFromTree(Node* node) {
-    if (isConstant(node->value))
-        return node->value - 48;
-    else if (isUnary(node->value))
-        return !(node->left->value);
-    else
-        return operator_map[node->value](calcFromTree(node->left), calcFromTree(node->right));
-}
-
 bool eval_formula(std::string formula) {
-    Node* tree = treeBuilder(formula);
-    return calcFromTree(tree);
+    return calcFromTree(treeBuilder(formula));
 }
 
 int main(void) {

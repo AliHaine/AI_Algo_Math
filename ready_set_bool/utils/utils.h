@@ -2,6 +2,13 @@
 #define UTILS_H
 #include <iostream>
 
+    std::unordered_map<char, std::function<int(int, int)>> operator_map = {
+        {'&', [](int a, int b) { return a & b; }},
+        {'|', [](int a, int b) { return a | b; }},
+        {'^', [](int a, int b) { return a ^ b; }},
+        {'=', [](int a, int b) { return a == b; }},
+        {'>', [](int a, int b) { return (!a) | b; }},
+    };
 
     struct Node {
         char value;
@@ -50,6 +57,15 @@
                 return false;
         }
         return stack_size == 1;
+    }
+
+    int calcFromTree(Node* node) {
+        if (isConstant(node->value))
+            return node->value - 48;
+        else if (isUnary(node->value))
+            return !(node->left->value);
+        else
+            return operator_map[node->value](calcFromTree(node->left), calcFromTree(node->right));
     }
 
     Node* treeBuilder(const std::string formula) {

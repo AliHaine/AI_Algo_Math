@@ -5,50 +5,7 @@
 #include <unordered_map>
 #include <map>
 #include <algorithm>
-
-int power(int number, int power) {
-    int result = number;
-    while (--power > 0)
-        result *= number;
-    return result;
-}
-
-bool eval_formula(std::string formula) {
-    std::stack<int> main_stack;
-    std::unordered_map<char, std::function<char(int, int)>> operator_map = {
-        {'&', [](int a, int b) { return a & b; }},
-        {'|', [](int a, int b) { return a | b; }},
-        {'^', [](int a, int b) { return a ^ b; }},
-        {'=', [](int a, int b) { return a == b; }},
-        {'>', [](int a, int b) { return (!a) | b; }},
-    };
-
-    int right;
-    int left;
-    for (char c : formula) {
-        if (c == '1' || c == '0') {
-            main_stack.push(c - '0');
-            continue;
-        }
-        if (c == '!') {
-            right = main_stack.top(); main_stack.pop();
-            main_stack.push(!right);
-            continue;
-        }
-        if (!operator_map.count(c) || main_stack.size() < 2) {
-            std::cout << std::endl << "An error occurred with your formula, please check it." << std::endl;
-            exit(1);
-        }
-        right = main_stack.top(); main_stack.pop();
-        left = main_stack.top(); main_stack.pop();
-        main_stack.push(operator_map[c](left, right));
-    }
-    if (main_stack.size() != 1) {
-        std::cout << std::endl << "An error occurred with your formula, please check it." << std::endl;
-        exit(1);
-    }
-    return main_stack.top();
-}
+#include "../utils/utils.h"
 
 void print_header(std::map<char, int> &usedVar) {
     std::cout << "| ";
@@ -95,12 +52,12 @@ void print_truth_table(std::string formula) {
 
         for (auto it = usedVar.begin(); it != usedVar.end(); ++it)
             std::cout << it->second << " | ";
-        std::cout << eval_formula(currentFormula) << " |" << std::endl;
+        std::cout << calcFromTree(treeBuilder(currentFormula)) << " |" << std::endl;
         currentFormula = formula;
     }
 }
 
 int main(void) {
-    print_truth_table("A!B&C|");
+    print_truth_table("AB&C|");
     return 0;
 }
