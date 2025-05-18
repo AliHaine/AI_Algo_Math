@@ -113,6 +113,20 @@ To build a truth table:
 - 
 Or conceptually:
 - Try to set a 1 at the rightmost possible position.
-- Reset all bits to the right of tat position to 0.
+- Reset all bits to the right of that position to 0.
 
 This generates all binary combinations in order, which are used to fill the truth table.
+
+## ex07 - SAT
+
+_Write a function that takes as input a string that contains a propositional
+formula in reverse polish notation and tells whether it is satisfiable_
+
+SAT-solver is an algorithm which aim to solve the boolean satisfiability problem.
+
+Given a Boolean expression, a SAT-solver explores all possible truth assignments to the variables and reports whether at least one assignment makes the expression evaluate to true. 
+If such an assignment exists, the formula is satisfiable, otherwise, it is unsatisfiable.
+
+Expression which will never be true, so unsatisfiable: A!A=
+
+Expression which have true case; so satisfiable: AA|
