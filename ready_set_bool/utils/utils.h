@@ -1,6 +1,9 @@
 #ifndef UTILS_H
 #define UTILS_H
 #include <iostream>
+#include <functional>
+#include <unordered_map>
+#include <stack>
 
     std::unordered_map<char, std::function<int(int, int)>> operator_map = {
         {'&', [](int a, int b) { return a & b; }},

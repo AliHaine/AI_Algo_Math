@@ -159,16 +159,16 @@ Here, B is a subset of A
 ### Type of Subsets
 
 **Possible equality**  
-If \(B \subseteq A\) **and** \(A \subseteq B\), then \(A\) and \(B\) have exactly the same elements; we write **\(A = B\)**.
+If `B ⊆ A` **and** `A ⊆ B`, then `A` and `B` have exactly the same elements, so `A = B`.
 
-**Proper subset (⊂)**  
-\(B \subset A\) means \(B \subseteq A\) *but* \(B \neq A\); that is, \(A\) contains at least one element that is not in \(B\).
+**Proper subset**  
+`B ⊂ A` means `B ⊆ A` but `B ≠ A`; that is, `A` has at least one element not in `B`.
 
 **Empty set**  
-The empty set \(\varnothing\) is a subset of every set (there is no element that can violate the subset condition).
+The empty set `∅` is a subset of every set (there is no element that can violate the definition).
 
 **Power set**  
-The collection of **all** subsets of a set \(A\) is called the *power set* of \(A\), denoted \(\mathcal{P}(A)\).
+The collection of **all** subsets of a set `A` is called the *power set* of `A`, written `P(A)`.
 
 ### PowerSet
 
@@ -187,3 +187,14 @@ For E = {A,B,C}, 3 elements, $2^3$ = 8 subset.
 {A,B}, {A,C}, {B,C},
 {A,B,C}
 }
+
+## ex09 - 
+
+| Symbol | Mathematical Equivalent | Set‑theory equivalent   | Description                                  |
+|--------|---------------|-------------------------|----------------------------------------------|
+| `!`    | ¬ | 𝐔 (Complement)         | pick everything *not* in A                   |
+| `&`    | ∧ | ∩ (intersect)           | keep only items common to both               |
+| `\|`   | ∨ | ∪ (Union)               | anything in A *or* B (or both)               |
+| `ˆ`    | ⊕ | Δ (sym. Diff.)          | “either/or” – in exactly one of the two      |
+| `>`    | ⇒ | (𝐔\\A)∪B (Implication) | same as “¬A∨B”                               |
+| `=`    | ⇔ | 𝐔\\(AΔB) (Equivalence) | true when A and B have the *same* membership |

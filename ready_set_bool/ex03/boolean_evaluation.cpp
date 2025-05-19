@@ -1,7 +1,4 @@
 ﻿#include <iostream>
-#include <stack>
-#include <functional>
-#include <unordered_map>
 #include "../utils/utils.h"
 
 void tests_simple();
