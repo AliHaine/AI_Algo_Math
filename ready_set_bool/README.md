@@ -89,6 +89,7 @@ A truth table is a diragram showing how the truth or falsity of a proposition va
 
 ### Example 
 _formula AB&C| equivalent to (A ∧ B) ∨ C_
+
 | A | B | C | = |
 |---|---|---|---|
 | 0 | 0 | 0 | 0 |
@@ -100,16 +101,16 @@ _formula AB&C| equivalent to (A ∧ B) ∨ C_
 | 1 | 1 | 0 | 1 |
 | 1 | 1 | 1 | 1 |
 
-The number of rows in the truth table is calculated as $$2^N$$. 
-Where N is the number of distinct variables (in this case 3), so we have $$2^3$$ = 8 rows. Every possible combination of input values is precomputed.
+The number of rows in the truth table is calculated as $2^N$. 
+Where N is the number of distinct variables (in this case 3), so we have $2^3$ = 8 rows. Every possible combination of input values is precomputed.
 
 ### Algorithm to generate a Truth table
 
 To build a truth table:
 - Count the number of distinct variables (3)
-- Compute the number of rows ($$2^3$$ = 8)
+- Compute the number of rows ($2^3$ = 8)
 - Start with the row | 0 | 0 | 0 |
-- For each step (from 0 to $$2^n$$-1), convert the step number to binary and use it to fill the table
+- For each step (from 0 to $2^n$-1), convert the step number to binary and use it to fill the table
 - 
 Or conceptually:
 - Try to set a 1 at the rightmost possible position.
@@ -130,3 +131,59 @@ If such an assignment exists, the formula is satisfiable, otherwise, it is unsat
 Expression which will never be true, so unsatisfiable: A!A=
 
 Expression which have true case; so satisfiable: AA|
+
+## ex08 - PowerSet
+
+_Write a function that takes as input a set of integers, and returns its powerset_
+
+To do this exercice; we have to understand several thinks.
+
+### Set
+
+A **set** is an unordered collection of unique elements
+quick example;
+set = [1,2,3] This is a set of integer with the int 1 2 and 3
+set = [1,1,2] By definition, this is not and can't be a set, because 1 appears twice
+
+### SubSet
+
+A **set B** is a **subset** of A, when every element of B is also in A.
+
+### Example
+
+A = [1,2,3]
+B = [2,3]
+
+Here, B is a subset of A
+
+### Type of Subsets
+
+**Possible equality**  
+If \(B \subseteq A\) **and** \(A \subseteq B\), then \(A\) and \(B\) have exactly the same elements; we write **\(A = B\)**.
+
+**Proper subset (⊂)**  
+\(B \subset A\) means \(B \subseteq A\) *but* \(B \neq A\); that is, \(A\) contains at least one element that is not in \(B\).
+
+**Empty set**  
+The empty set \(\varnothing\) is a subset of every set (there is no element that can violate the subset condition).
+
+**Power set**  
+The collection of **all** subsets of a set \(A\) is called the *power set* of \(A\), denoted \(\mathcal{P}(A)\).
+
+### PowerSet
+
+A powerset, wrote 𝒫(E) is a set of all subset for a given set.
+The powerset must contain a empty set, can be written ∅, and the entire given set.
+
+We can calculat the unmber of subset with the formula $2^N$ where n is the number of variables in the initiale set.
+
+### Example 
+
+For E = {A,B,C}, 3 elements, $2^3$ = 8 subset.
+
+𝒫(E) = {
+∅,
+{A}, {B}, {C},
+{A,B}, {A,C}, {B,C},
+{A,B,C}
+}

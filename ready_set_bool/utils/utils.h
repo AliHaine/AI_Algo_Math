@@ -95,4 +95,8 @@
         }
         return stack.top();
     }
+
+    void checkSet(std::vector<int>) {
+
+    }
 #endif
