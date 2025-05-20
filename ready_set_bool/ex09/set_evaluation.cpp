@@ -10,7 +10,6 @@ std::vector<int> eval_set(std::string formula, std::vector<std::vector<int>> set
     return result;
 }
 
-
 int main(void) {
     std::vector<int> result;
     std::vector<std::vector<int>> sets = {

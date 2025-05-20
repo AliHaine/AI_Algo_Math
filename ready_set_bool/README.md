@@ -199,4 +199,8 @@ For E = {A,B,C}, 3 elements, $2^3$ = 8 subset.
 | `>`    | ⇒ | (𝐔\\A)∪B (Implication) | same as “¬A∨B”                           |
 | `=`    | ⇔ | = (Equivalence)         | Both have exactly the same values        |
 
+We might think that we can simply reuse the evaluator function that we wrote for Boolean RPN expressions. However, even though the symbols may look the same,
+their interactions and purposes are different.
 
+In boolean operation, the operators evaluate true/false, whereas in Set-Theroy, the operators
+transform sets.
