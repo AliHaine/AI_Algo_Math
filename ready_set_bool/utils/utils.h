@@ -1,105 +1,21 @@
 #ifndef UTILS_H
 #define UTILS_H
+
 #include <iostream>
 #include <functional>
 #include <unordered_map>
-#include <stack>
 
-    std::unordered_map<char, std::function<int(int, int)>> operator_map = {
-        {'&', [](int a, int b) { return a & b; }},
-        {'|', [](int a, int b) { return a | b; }},
-        {'^', [](int a, int b) { return a ^ b; }},
-        {'=', [](int a, int b) { return a == b; }},
-        {'>', [](int a, int b) { return (!a) | b; }},
-    };
+extern std::unordered_map<char, std::function<int(int, int)>> operator_map;
 
-    struct Node {
-        char value;
-        Node* left = nullptr;
-        Node* right = nullptr;
+bool isVariable(char c);
 
-        Node(char val) : value(val) {}
-    };
+bool isConstant(char c);
 
-    bool isVariable(char c) {
-        return (c >= 'A' && c <= 'Z') || c == '0' || c == '1';
-    }
+bool isOperator(char c);
 
-    bool isConstant(char c) {
-       return c == '0' || c == '1';
-    }
+bool isUnary(char c);
 
-    bool isOperator(char c) {
-        return c == '&' || c == '>' || c == '|' || c == '^' || c == '=';
-    }
+int power(int number, int power);
 
-    bool isUnary(char c) {
-        return c == '!';
-    }
-
-    int power(int number, int power) {
-        int result = number;
-        while (--power > 0)
-            result *= number;
-        return result;
-    }
-
-    bool isValidRPN(std::string formula) {
-        int stack_size = 0;
-        for (char c : formula) {
-            if (isVariable(c))
-                stack_size++;
-            else if (isOperator(c)) {
-                if (stack_size < 2) return false;
-                stack_size--;
-            }
-            else if (isUnary(c)) {
-                if (stack_size < 1) return false;
-            }
-            else
-                return false;
-        }
-        return stack_size == 1;
-    }
-
-    int calcFromTree(Node* node) {
-        if (isConstant(node->value))
-            return node->value - 48;
-        else if (isUnary(node->value))
-            return !(node->left->value);
-        else
-            return operator_map[node->value](calcFromTree(node->left), calcFromTree(node->right));
-    }
-
-    Node* treeBuilder(const std::string formula) {
-        std::stack<Node*> stack;
-
-        if (!isValidRPN(formula)) {
-            std::cout << "The formula " << formula << " is not valid" << std::endl;
-            exit(1);
-        }
-
-        for (char c : formula) {
-            if (isVariable(c)) {
-                stack.push(new Node(c));
-            } else if (isOperator(c)) {
-                Node* childRight = stack.top(); stack.pop();
-                Node* childLeft = stack.top(); stack.pop();
-                Node* newNode = new Node(c);
-                newNode->left = childLeft;
-                newNode->right = childRight;
-                stack.push(newNode);
-            } else {
-                Node* child = stack.top(); stack.pop();
-                Node* newNode = new Node(c);
-                newNode->left = child;
-                stack.push(newNode);
-            }
-        }
-        return stack.top();
-    }
-
-    void checkSet(std::vector<int>) {
-
-    }
+bool isValidRPN(std::string formula);
 #endif

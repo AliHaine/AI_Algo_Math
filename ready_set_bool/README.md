@@ -188,13 +188,15 @@ For E = {A,B,C}, 3 elements, $2^3$ = 8 subset.
 {A,B,C}
 }
 
-## ex09 - 
+## ex09 - Set Evaluation
 
-| Symbol | Mathematical Equivalent | Set‑theory equivalent   | Description                                  |
-|--------|---------------|-------------------------|----------------------------------------------|
-| `!`    | ¬ | 𝐔 (Complement)         | pick everything *not* in A                   |
-| `&`    | ∧ | ∩ (intersect)           | keep only items common to both               |
-| `\|`   | ∨ | ∪ (Union)               | anything in A *or* B (or both)               |
-| `ˆ`    | ⊕ | Δ (sym. Diff.)          | “either/or” – in exactly one of the two      |
-| `>`    | ⇒ | (𝐔\\A)∪B (Implication) | same as “¬A∨B”                               |
-| `=`    | ⇔ | 𝐔\\(AΔB) (Equivalence) | true when A and B have the *same* membership |
+| Symbol | Mathematical Equivalent | Set‑theory equivalent   | Description                              |
+|--------|---------------|-------------------------|------------------------------------------|
+| `!`    | ¬ | \ (Complement)          | pick everything *not* in A               |
+| `&`    | ∧ | ∩ (intersect)           | Keep only things common to both          |
+| `\|`   | ∨ | ∪ (Union)               | Unification of both                      |
+| `ˆ`    | ⊕ | Δ (sym. Diff.)          | Everything, except the things they share |
+| `>`    | ⇒ | (𝐔\\A)∪B (Implication) | same as “¬A∨B”                           |
+| `=`    | ⇔ | = (Equivalence)         | Both have exactly the same values        |
+
+

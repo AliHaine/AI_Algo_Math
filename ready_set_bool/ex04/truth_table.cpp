@@ -1,11 +1,7 @@
-#include <list>
 #include <iostream>
-#include <stack>
-#include <functional>
-#include <unordered_map>
 #include <map>
 #include <algorithm>
-#include "../utils/utils.h"
+#include "../utils/tree.h"
 
 void print_header(std::map<char, int> &usedVar) {
     std::cout << "| ";

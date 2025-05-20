@@ -1,10 +1,7 @@
 #include <iostream>
-#include <functional>
-#include <unordered_map>
 #include <map>
 #include <algorithm>
-#include <stack>
-#include "../utils/utils.h"
+#include "../utils/tree.h"
 
 bool sat(std::string formula) {
     std::map<char, int> usedVar;
