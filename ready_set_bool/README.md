@@ -118,6 +118,31 @@ Or conceptually:
 
 This generates all binary combinations in order, which are used to fill the truth table.
 
+## ex05 - Negation Normal Form
+_Write a function that takes as input a string that contains a propositional
+formula in RPN, and returns an equivalent formula in Negation Normal Form (NNF), meaning that every negation operators must be located right
+after a variable._
+
+A formula is in Negation Normal Form (NNF) when:
+- The only logical operators are ∧ (AND), ∨ (OR), ¬ (NOT).
+- NOT (¬) is applied only to variables (like ¬A) not to compound expressions.
+
+To convert an expression into NNF, we must first rewrite expressions using only the allowed operators. That mean removing: ⊕ (XOR), ⇒ (Implication), ⇔ (Equivalence).
+
+| Expression | NNF equivalent      |
+|------------|---------------------|
+| A ⇒ B          | ¬A ∨ B              | 
+| A ⇔ B          | (A ∧ B) ∨ (¬A ∧ ¬B) |
+| A ⊕ B          | (A ∨ B) ∧ ¬(A ∧ B)  |
+
+Then we have to push negations inward using [De Morgan's laws](https://en.wikipedia.org/wiki/De_Morgan%27s_laws) and eliminate double negations
+
+| Expression | De Morgan's laws equivalent |
+|-------|---------------------------|
+| ¬(A ∧ B)    | ¬A ∨ ¬B    | 
+| ¬(A ∨ B)  | ¬A ∧ ¬B       |
+| ¬¬A   | A         |
+
 ## ex07 - SAT
 
 _Write a function that takes as input a string that contains a propositional
