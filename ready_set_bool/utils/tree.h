@@ -5,16 +5,22 @@
 #include <string>
 #include "./utils.h"
 
-template <typename T>
 struct Node {
-    T value;
+    char value;
     Node* left = nullptr;
     Node* right = nullptr;
 
-    Node(T val) : value(val) {}
+    Node(char val) : value(val) {};
 };
 
-int calcFromTree(Node<char>* node) {
+Node* createNodeWithValues(char value, Node* left, Node* right) {
+	Node* newNode = new Node(value);
+	newNode->left = left;
+	newNode->right = right;
+	return newNode;
+}
+
+int calcFromTree(Node* node) {
     if (isConstant(node->value))
         return node->value - 48;
     else if (isUnary(node->value))
@@ -23,9 +29,8 @@ int calcFromTree(Node<char>* node) {
         return operator_map[node->value](calcFromTree(node->left), calcFromTree(node->right));
 }
 
-template <typename T>
-Node<T>* treeBuilder(const std::string formula) {
-    std::stack<Node<T>*> stack;
+Node* treeBuilder(const std::string formula) {
+    std::stack<Node*> stack;
 
     if (!isValidRPN(formula)) {
         std::cout << "The formula " << formula << " is not valid" << std::endl;
@@ -34,17 +39,17 @@ Node<T>* treeBuilder(const std::string formula) {
 
     for (char c : formula) {
         if (isVariable(c)) {
-            stack.push(new Node<T>(c));
+            stack.push(new Node(c));
         } else if (isOperator(c)) {
-            Node<T>* childRight = stack.top(); stack.pop();
-            Node<T>* childLeft = stack.top(); stack.pop();
-            Node<T>* newNode = new Node<T>(c);
+            Node* childRight = stack.top(); stack.pop();
+            Node* childLeft = stack.top(); stack.pop();
+            Node* newNode = new Node(c);
             newNode->left = childLeft;
             newNode->right = childRight;
             stack.push(newNode);
         } else {
-            Node<T>* child = stack.top(); stack.pop();
-            Node<T>* newNode = new Node<T>(c);
+            Node* child = stack.top(); stack.pop();
+            Node* newNode = new Node(c);
             newNode->left = child;
             stack.push(newNode);
         }

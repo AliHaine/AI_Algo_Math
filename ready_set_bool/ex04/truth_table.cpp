@@ -48,7 +48,7 @@ void print_truth_table(std::string formula) {
 
         for (auto it = usedVar.begin(); it != usedVar.end(); ++it)
             std::cout << it->second << " | ";
-        std::cout << calcFromTree(treeBuilder<char>(currentFormula)) << " |" << std::endl;
+        std::cout << calcFromTree(treeBuilder(currentFormula)) << " |" << std::endl;
         currentFormula = formula;
     }
 }

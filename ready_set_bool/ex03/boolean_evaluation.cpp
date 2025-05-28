@@ -6,7 +6,7 @@ void tests_complex();
 void tests_error();
 
 bool eval_formula(std::string formula) {
-    return calcFromTree(treeBuilder<char>(formula));
+    return calcFromTree(treeBuilder(formula));
 }
 
 int main(void) {
