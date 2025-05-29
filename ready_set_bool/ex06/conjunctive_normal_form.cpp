@@ -1,24 +1,89 @@
-#include "../ex05/negation_normal_form.h"
+#include "../utils/tree.h"
+
+//I can't use the existing NNF function due to the subject limitations.
+Node* toNNF(Node* node) {
+	if (node == nullptr) return nullptr;
+
+	if (node->value == '!') {
+		Node* child = node->left;
+
+		if (child->value == '!')
+			return toNNF(child->left);
+
+		if (child->value == '&' || child->value == '|') {
+			Node* a = toNNF(createNodeWithValues('!', child->left, nullptr));
+			Node* b = toNNF(createNodeWithValues('!', child->right, nullptr));
+			char op = (child->value == '&') ? '|' : '&';
+			return createNodeWithValues(op, a, b);
+		}
+		return createNodeWithValues('!', toNNF(child), nullptr);
+	}
+
+	if (node->value == '>') {
+		Node* notA = toNNF(createNodeWithValues('!', node->left, nullptr));
+		Node* B = toNNF(node->right);
+		return createNodeWithValues('|', notA, B);
+	}
+
+	if (node->value == '=') {
+		Node* A = toNNF(node->left);
+		Node* B = toNNF(node->right);
+
+		Node* notA = toNNF(createNodeWithValues('!', node->left, nullptr));
+		Node* notB = toNNF(createNodeWithValues('!', node->right, nullptr));
+
+		Node* aAndB = createNodeWithValues('&', A, B);
+		Node* naAndnB = createNodeWithValues('&', notA, notB);
+		return createNodeWithValues('|', aAndB, naAndnB);
+	}
+
+	if (node->value == '&' || node->value == '|') {
+		Node* left = toNNF(node->left);
+		Node* right = toNNF(node->right);
+		return createNodeWithValues(node->value, left, right);
+	}
+
+	return node;
+}
 
 Node* toCNF(Node* node) {
 	if (node == nullptr) return nullptr;
 
-	if (isVariable(node->value))
+	if (isVariable(node->value) || node->value == '!')
 		return node;
 
 	if (node->value == '&')
 		return createNodeWithValues('&', toCNF(node->left), toCNF(node->right));
 
 	if (node->value == '|') {
-		Node* A_cnf = toCNF(node->left);
-		Node* B_cnf = toCNF(node->right);
+		Node* A = toCNF(node->left);
+		Node* B = toCNF(node->right);
 
-		if (A_cnf->value == '&' || B_cnf->value == '&') {
-			//todo
-			return distribute_OR_over_AND(A_cnf, B_cnf);
+		if (A->value == '&' || B->value == '&') {
+			if (A->value == '&' && B->value == '&') {
+				Node* c1 = createNodeWithValues('|', A->left, B->left);
+				Node* c2 = createNodeWithValues('|', A->left, B->right);
+				Node* c3 = createNodeWithValues('|', A->right, B->left);
+				Node* c4 = createNodeWithValues('|', A->right, B->right);
+				Node* and1 = createNodeWithValues('&', c1, c2);
+				Node* and2 = createNodeWithValues('&', c3, c4);
+				return createNodeWithValues('&', and1, and2);
+			}
+			else if (A->value == '&') {
+				Node* c1 = createNodeWithValues('|', A->left, B);
+				Node* c2 = createNodeWithValues('|', A->right, B);
+
+				return createNodeWithValues('&', c1, c2);
+			}
+			else {
+				Node* c1 = createNodeWithValues('|', B, A->left);
+				Node* c2 = createNodeWithValues('|', B, A->right);
+
+				return createNodeWithValues('&', c1, c2);
+			}
 		}
 		else
-			return createNodeWithValues('|', A_cnf, B_cnf);
+			return createNodeWithValues('|', A, B);
 	}
 	return nullptr;
 }
@@ -26,13 +91,24 @@ Node* toCNF(Node* node) {
 std::string conjunctive_normal_form(std::string formula) {
 	std::string result;
 
-	Node* treeNNF = negation_normal_form(formula);
+	Node* treeNNF = toNNF(treeBuilder(formula));
 	Node* treeCNF = toCNF(treeNNF);
+
+	postOrder(treeCNF);
+	std::cout << std::endl;
 
 	return result;
 }
 
 int main(void) {
+	conjunctive_normal_form("AB&!");
+	conjunctive_normal_form("AB|!");
+	conjunctive_normal_form("AB|C&");
+	conjunctive_normal_form("AB|C|D|");
+	conjunctive_normal_form("AB&C&D&");
+	conjunctive_normal_form("AB&!C!|");
+	conjunctive_normal_form("AB|!C!&");
+	conjunctive_normal_form("AB&C|");
 
 	return 0;
 }

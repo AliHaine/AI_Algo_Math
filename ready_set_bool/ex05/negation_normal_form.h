@@ -4,6 +4,6 @@
 #include <iostream>
 #include "../utils/tree.h"
 
-std::string negation_normal_form(std::string formula);
+Node* toNNF(Node* node);
 
 #endif
