@@ -143,6 +143,32 @@ Then we have to push negations inward using [De Morgan's laws](https://en.wikipe
 | ¬(A ∨ B)  | ¬A ∧ ¬B       |
 | ¬¬A   | A         |
 
+## ex06 - Conjunctive Normal Form
+
+_Write a function that takes as input a string that contains a propositional
+formula in RPN, and returns an equivalent formula in Conjunctive
+Normal Form (CNF). This means that in the output, every negation must be located
+right after a variable and every conjunction must be located at the end of the formula._
+
+A formula is in Conjunctive Normal Form (CNF) when:
+- The only logical operators are ∧ (AND), ∨ (OR), ¬ (NOT).
+- NOT (¬) is applied only to variables (like ¬A) not to compound expressions.
+- It is a conjunction ∧ (AND) of one or more clauses.
+- Each clause is a disjunction ∨ (OR) of literals.
+
+As we can see, CNF is pretty much similar to NNF, expecting that *every* ∧ (AND) must be applied to clauses, and every ∨ (OR) must be used in clauses.
+To convert a regular expression to CNF, the common and easiest way is to firstly convert the expression to NNF, then from NNF converting to a CNF.
+
+The conversion to CNF can be done using the following distributivity law:
+
+(A ∧ B) ∨ C ≡ (A ∨ C) ∧ (B ∨ C)
+
+| NNF expression | CNF equivalent |
+|------------|-------|
+| (A ∨ B) ∧ C  | (A ∨ B) ∧ C |
+| (A ∧ B) ∨ C  | (A ∨ C) ∧ (B ∨ C) |
+| ¬¬A   | A              |
+
 ## ex07 - SAT
 
 _Write a function that takes as input a string that contains a propositional
