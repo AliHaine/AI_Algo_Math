@@ -163,11 +163,12 @@ The conversion to CNF can be done using the following distributivity law:
 
 (A ∧ B) ∨ C ≡ (A ∨ C) ∧ (B ∨ C)
 
-| NNF expression | CNF equivalent |
-|------------|-------|
-| (A ∨ B) ∧ C  | (A ∨ B) ∧ C |
-| (A ∧ B) ∨ C  | (A ∨ C) ∧ (B ∨ C) |
-| ¬¬A   | A              |
+| NNF expression | CNF equivalent                        |
+|------------|---------------------------------------|
+| (A ∨ B) ∧ C  | (A ∨ B) ∧ C                           |
+| (A ∧ B) ∨ C  | (A ∨ C) ∧ (B ∨ C)                     |
+| (A ∨ B) ∨ (C ∧ D)  | (A ∨ B ∨ C) ∧ (A ∨ B ∨ D)             |
+| (A ∧ B) ∨ (C ∧ D)  | (A ∨ C) ∧ (A ∨ D) ∧ (B v C) ∧ (B ∨ D) |
 
 ## ex07 - SAT
 
