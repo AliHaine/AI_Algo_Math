@@ -13,6 +13,20 @@ struct Node {
     Node(char val) : value(val) {};
 };
 
+void inOrder(Node* node) {
+	if (!node) return;
+	inOrder(node->left);
+	std::cout << node->value;
+	inOrder(node->right);
+}
+
+void postOrder(Node* node) {
+	if (!node) return;
+	postOrder(node->left);
+	postOrder(node->right);
+	std::cout << node->value;
+}
+
 Node* createNodeWithValues(char value, Node* left, Node* right) {
 	Node* newNode = new Node(value);
 	newNode->left = left;
