@@ -1,4 +1,5 @@
 #include "../utils/tree.h"
+#include <vector>
 
 //I can't use the existing NNF function due to the subject limitations.
 Node* toNNF(Node* node) {
@@ -88,27 +89,52 @@ Node* toCNF(Node* node) {
 	return nullptr;
 }
 
+void collectOperands(Node* node, char op, std::vector<Node*>& out) {
+	if (!node) return;
+
+	if (node->value == op) {
+		collectOperands(node->left, op, out);
+		collectOperands(node->right, op, out);
+	} else
+		out.push_back(node);
+}
+
+void fromTreeToStr(Node* node, std::string &formula) {
+	if (!node) return;
+
+	if (node->value == '&' || node->value == '|') {
+		std::vector<Node*> operands;
+		collectOperands(node, node->value, operands);
+		for (Node* operand : operands)
+			fromTreeToStr(operand, formula);
+		for (size_t i = 1; i < operands.size(); ++i)
+			formula += node->value;
+	}
+	else {
+		fromTreeToStr(node->left, formula);
+		fromTreeToStr(node->right, formula);
+		formula += node->value;
+	}
+}
+
+
 std::string conjunctive_normal_form(std::string formula) {
 	std::string result;
 
 	Node* treeNNF = toNNF(treeBuilder(formula));
 	Node* treeCNF = toCNF(treeNNF);
-
-	postOrder(treeCNF);
-	std::cout << std::endl;
+	fromTreeToStr(treeCNF, result);
 
 	return result;
 }
 
 int main(void) {
-	conjunctive_normal_form("AB&!");
-	conjunctive_normal_form("AB|!");
-	conjunctive_normal_form("AB|C&");
-	conjunctive_normal_form("AB|C|D|");
-	conjunctive_normal_form("AB&C&D&");
-	conjunctive_normal_form("AB&!C!|");
-	conjunctive_normal_form("AB|!C!&");
-	conjunctive_normal_form("AB&C|");
-
+	std::cout << conjunctive_normal_form("AB&!") << std::endl;
+	std::cout << conjunctive_normal_form("AB|!") << std::endl;
+	std::cout << conjunctive_normal_form("AB|C&") << std::endl;
+	std::cout << conjunctive_normal_form("AB|C|D|") << std::endl;
+	std::cout << conjunctive_normal_form("AB&C&D&") << std::endl;
+	std::cout << conjunctive_normal_form("AB&!C!|") << std::endl;
+	std::cout << conjunctive_normal_form("AB|!C!&") << std::endl;
 	return 0;
 }
