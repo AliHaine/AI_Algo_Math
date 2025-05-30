@@ -156,18 +156,19 @@ A formula is in Conjunctive Normal Form (CNF) when:
 - It is a conjunction ∧ (AND) of one or more clauses.
 - Each clause is a disjunction ∨ (OR) of literals.
 
-As we can see, CNF is pretty much similar to NNF, expecting that *every* ∧ (AND) must be applied to clauses, and every ∨ (OR) must be used in clauses.
-To convert a regular expression to CNF, the common and easiest way is to firstly convert the expression to NNF, then from NNF converting to a CNF.
+As we can see, CNF is quite similar to NNF, expect that in CNF, **every** ∧ (AND) must be applied between clauses, and every ∨ (OR) must be used within a clause.
+To convert a standard expression into CNF, the most common and straightforward way is to first convert it to NNF, and then convert from NNF to CNF.
 
-The conversion to CNF can be done using the following distributivity law:
+The CNF conversion relies on the following distributive law:
 
 (A ∧ B) ∨ C ≡ (A ∨ C) ∧ (B ∨ C)
 
-| NNF expression | CNF equivalent |
-|------------|-------|
-| (A ∨ B) ∧ C  | (A ∨ B) ∧ C |
-| (A ∧ B) ∨ C  | (A ∨ C) ∧ (B ∨ C) |
-| ¬¬A   | A              |
+| NNF expression | CNF equivalent                        |
+|------------|---------------------------------------|
+| (A ∨ B) ∧ C  | (A ∨ B) ∧ C                           |
+| (A ∧ B) ∨ C  | (A ∨ C) ∧ (B ∨ C)                     |
+| (A ∨ B) ∨ (C ∧ D)  | (A ∨ B ∨ C) ∧ (A ∨ B ∨ D)             |
+| (A ∧ B) ∨ (C ∧ D)  | (A ∨ C) ∧ (A ∨ D) ∧ (B v C) ∧ (B ∨ D) |
 
 ## ex07 - SAT
 

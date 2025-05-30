@@ -1,6 +1,4 @@
-#include <iostream>
-#include <functional>
-#include "../utils/tree.h"
+#include "negation_normal_form.h"
 
 Node* toNNF(Node* node) {
 	if (node == nullptr) return nullptr;
@@ -60,7 +58,6 @@ std::string negation_normal_form(std::string formula) {
 	from_tree_to_str(converted, convertedFormula);
     return convertedFormula;
 }
-
 
 int main(void) {
 
