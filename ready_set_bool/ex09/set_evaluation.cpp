@@ -1,6 +1,4 @@
-#include <iostream>
-#include <vector>
-#include "../utils/tree.h"
+#include "../utils/set_tree.h"
 
 std::vector<int> eval_set(std::string formula, std::vector<std::vector<int>> sets) {
     std::vector<int> result;
