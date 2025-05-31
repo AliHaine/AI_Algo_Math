@@ -6,6 +6,7 @@
 #include <vector>
 #include <stack>
 #include <algorithm>
+#include <unordered_map>
 #include "./utils.h"
 
 extern std::vector<int> u;
@@ -94,6 +95,7 @@ void postOrder(Node* node) {
 
 Node* treeBuilder(const std::string formula, std::vector<std::vector<int>> sets) {
     std::stack<Node*> stack;
+	std::unordered_map<char, std::vector<int>> variableAndValues;
 	int index = 0;
 
     if (!isValidRPN(formula)) {
@@ -103,7 +105,17 @@ Node* treeBuilder(const std::string formula, std::vector<std::vector<int>> sets)
 
     for (char c : formula) {
         if (isVariable(c)) {
-            stack.push(new Node(sets.at(index++)));
+			auto varAndValIt = variableAndValues.find(c);
+			if (varAndValIt == variableAndValues.end()) {
+				if (index >= sets.size()) {
+					std::cout << "The formula " << formula << " is not valid" << std::endl;
+					exit(1);
+				}
+				variableAndValues.insert({c, sets.at(index)});
+				stack.push(new Node(sets.at(index++)));
+			} else {
+				stack.push(new Node((varAndValIt->second)));
+			}
         } else if (isOperator(c)) {
             Node* childRight = stack.top(); stack.pop();
             Node* childLeft = stack.top(); stack.pop();

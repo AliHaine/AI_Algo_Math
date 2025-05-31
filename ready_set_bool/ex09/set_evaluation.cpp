@@ -35,10 +35,6 @@ void tests() {
 			{0, 3, 4},
 	};
 	printResult(eval_set("AB&", sets));
-	sets = {
-			{0, 1, 2},
-			{3, 4, 5},
-	};
 	printResult(eval_set("AB|", sets));
 	sets = {
 			{0, 1, 2},
@@ -73,15 +69,7 @@ void testsComplex() {
 	};
 
 	printResult(eval_set("AB|CD||", sets));
-	// = (¬A ∪ B) ∩ (¬A ∪ C)
-	// From earlier:
-	// (¬A ∪ B) = {4,5,6,7,11,13,15}
-	// (¬A ∪ C) = {4,5,6,7,11,13,15}
-	// ∩ gives same: {4,5,6,7,11,13,15}
-	/*printResult(eval_set("AB=C>", sets));*/
-	// Evaluate (B = C), then A > that result
-	// B = {4,5,6,7}, C = {11,13,15} → B=C is false → result = {}
-	// Then: A > {} → (U \ A) ∪ {} = {4,5,6,7,11,13,15}
+	printResult(eval_set("AB|CD||A&", sets));
 }
 
 int main(void) {
@@ -91,8 +79,8 @@ int main(void) {
 		{11,13,15}
     };
 
-	//tests();
-	//testsMore();
+	tests();
+	testsMore();
 	testsComplex();
     return 0;
 }
