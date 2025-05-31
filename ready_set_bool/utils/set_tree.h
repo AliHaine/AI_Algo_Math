@@ -8,7 +8,17 @@
 #include <algorithm>
 #include "./utils.h"
 
+extern std::vector<int> u;
+
 std::unordered_map<char, std::function<std::vector<int>(std::vector<int>, std::vector<int>)>> vectorOperators = {
+		{'!', [](std::vector<int> a, std::vector<int> b) {
+			std::vector<int> newVec = {};
+			for (auto valA : a) {
+				if (std::find(b.begin(), b.end(), valA) == b.end())
+					newVec.push_back(valA);
+			}
+			return newVec;
+		}},
 		{'&', [](std::vector<int> a, std::vector<int> b) {
 			std::vector<int> newVec = {};
 			for (auto valA : a) {
@@ -51,6 +61,9 @@ std::unordered_map<char, std::function<std::vector<int>(std::vector<int>, std::v
 			}
 			newVec.push_back(1);
 			return newVec;
+		}},
+		{'>', [](std::vector<int> a, std::vector<int> b) {
+			return vectorOperators['|'](vectorOperators['!'](u, a), b);
 		}},
 };
 
