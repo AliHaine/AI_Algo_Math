@@ -245,7 +245,7 @@ For E = {A,B,C}, 3 elements, $2^3$ = 8 subset.
 | Symbol | Mathematical Equivalent | Set‑theory equivalent   | Description                              |
 |--------|---------------|-------------------------|------------------------------------------|
 | `!`    | ¬ | \ (Complement)          | pick everything *not* in A               |
-| `&`    | ∧ | ∩ (intersect)           | Keep only things common to both          |
+| `&`    | ∧ | ∩ (Intersect)           | Keep only things common to both          |
 | `\|`   | ∨ | ∪ (Union)               | Unification of both                      |
 | `ˆ`    | ⊕ | Δ (sym. Diff.)          | Everything, except the things they share |
 | `>`    | ⇒ | (𝐔\\A)∪B (Implication) | same as “¬A∨B”                           |

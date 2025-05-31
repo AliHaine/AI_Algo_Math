@@ -2,21 +2,86 @@
 #define SET_TREE_H
 
 #include <iostream>
+#include <utility>
 #include <vector>
+#include <stack>
+#include <algorithm>
 #include "./utils.h"
 
+std::unordered_map<char, std::function<std::vector<int>(std::vector<int>, std::vector<int>)>> vectorOperators = {
+		{'&', [](std::vector<int> a, std::vector<int> b) {
+			std::vector<int> newVec = {};
+			for (auto valA : a) {
+				for (auto valB : b) {
+					if (valA == valB) {
+						newVec.push_back(valA);
+						break;
+					}
+				}
+			}
+			return newVec;
+		}},
+		{'|', [](std::vector<int> a, std::vector<int> b) {
+			std::vector<int> newVec = {};
+			newVec.insert(newVec.end(), a.begin(), a.end());
+			newVec.insert(newVec.end(), b.begin(), b.end());
+			sort(newVec.begin(), newVec.end());
+			newVec.erase(unique(newVec.begin(), newVec.end() ), newVec.end());
+			return newVec;
+		}},
+		{'^', [](std::vector<int> a, std::vector<int> b) {
+			std::vector<int> newVec = {};
+			for (auto valA : a) {
+				if (std::find(b.begin(), b.end(), valA) == b.end())
+					newVec.push_back(valA);
+			}
+			for (auto valB : b) {
+				if (std::find(a.begin(), a.end(), valB) == a.end())
+					newVec.push_back(valB);
+			}
+			return newVec;
+		}},
+		{'=', [](std::vector<int> a, std::vector<int> b) {
+			std::vector<int> newVec = {};
+			if (a.size() != b.size())
+				return newVec;
+			for (auto valA : a) {
+				if (std::find(b.begin(), b.end(), valA) == b.end())
+					return newVec;
+			}
+			newVec.push_back(1);
+			return newVec;
+		}},
+};
+
 struct Node {
-    char op = nullptr;
-    std::vector<int> values = nullptr;
+    char op = 0;
+    std::vector<int> values;
     Node* left = nullptr;
     Node* right = nullptr;
 
     Node(char val) : op(val) {};
-    Node(std::vector<int> val) : values(val) {};
+    Node(std::vector<int> val) : values(std::move(val)) {};
 };
+
+void postOrder(Node* node) {
+	if (!node) return;
+	postOrder(node->left);
+	postOrder(node->right);
+	if (node->op != 0)
+		std::cout << node->op;
+	else {
+		std::cout << '[';
+		for (auto it : node->values) {
+			std::cout << it;
+		}
+		std::cout << ']';
+	}
+}
 
 Node* treeBuilder(const std::string formula, std::vector<std::vector<int>> sets) {
     std::stack<Node*> stack;
+	int index = 0;
 
     if (!isValidRPN(formula)) {
         std::cout << "The formula " << formula << " is not valid" << std::endl;
@@ -25,7 +90,7 @@ Node* treeBuilder(const std::string formula, std::vector<std::vector<int>> sets)
 
     for (char c : formula) {
         if (isVariable(c)) {
-            stack.push(new Node(c));
+            stack.push(new Node(sets.at(index++)));
         } else if (isOperator(c)) {
             Node* childRight = stack.top(); stack.pop();
             Node* childLeft = stack.top(); stack.pop();
