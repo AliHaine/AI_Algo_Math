@@ -53,13 +53,13 @@ std::unordered_map<char, std::function<std::vector<int>(std::vector<int>, std::v
 		}},
 		{'=', [](std::vector<int> a, std::vector<int> b) {
 			std::vector<int> newVec = {};
-			if (a.size() != b.size())
-				return newVec;
-			for (auto valA : a) {
-				if (std::find(b.begin(), b.end(), valA) == b.end())
-					return newVec;
-			}
-			newVec.push_back(1);
+
+			std::sort(a.begin(), a.end());
+			std::sort(b.begin(), b.end());
+			a.erase(std::unique(a.begin(), a.end()), a.end());
+			b.erase(std::unique(b.begin(), b.end()), b.end());
+			if (a == b)
+				newVec.push_back(1);
 			return newVec;
 		}},
 		{'>', [](std::vector<int> a, std::vector<int> b) {

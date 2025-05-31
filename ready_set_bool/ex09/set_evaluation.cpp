@@ -46,24 +46,33 @@ void tests() {
 	printResult(eval_set("A!", sets));
 }
 
-int main(void) {
-    std::vector<std::vector<int>> sets = {
-        {0, 1, 2, 3},
-        {4, 5, 6, 7},
-		{11,13,15}
-    };
+void testsMore(){
+	std::vector<std::vector<int>> sets = {
+			{0, 1, 2, 3},
+			{4, 5, 6, 7},
+			{11, 13, 15}
+	};
 
-	tests();
-	/*printResult(eval_set("AB>", sets));
-	// Expected: (U \ A) ∪ B → all except 0,1,2,3 + B
-	// = {4,5,6,7,11,13,15} ∪ {4,5,6,7} = {4,5,6,7,11,13,15}
-	printResult(eval_set("BA|", sets));
-	// = (U \ B) ∪ A → {0,1,2,3,11,13,15} ∪ {0,1,2,3} = {0,1,2,3,11,13,15}
-	printResult(eval_set("AC&", sets));
-	// = (U \ A) ∪ C = {4,5,6,7,11,13,15} ∪ {11,13,15} = {4,5,6,7,11,13,15}
-	printResult(eval_set("CA>", sets));
-	// = (U \ C) ∪ A = {0,1,2,3,4,5,6,7} ∪ {0,1,2,3} = {0,1,2,3,4,5,6,7}*/
-	//printResult(eval_set("AB|AC|&", sets));
+	printResult(eval_set("AB|", sets));
+	printResult(eval_set("AB&", sets));
+	printResult(eval_set("AB^", sets));
+	printResult(eval_set("AB=", sets));
+	sets = {
+			{0, 1, 2, 3},
+			{0, 1, 2, 3},
+	};
+	printResult(eval_set("AB=", sets));
+}
+
+void testsComplex() {
+	std::vector<std::vector<int>> sets = {
+			{0, 1, 2, 3},
+			{4, 5, 6, 7},
+			{11,13,15},
+			{25,26,28}
+	};
+
+	printResult(eval_set("AB|CD||", sets));
 	// = (¬A ∪ B) ∩ (¬A ∪ C)
 	// From earlier:
 	// (¬A ∪ B) = {4,5,6,7,11,13,15}
@@ -73,5 +82,17 @@ int main(void) {
 	// Evaluate (B = C), then A > that result
 	// B = {4,5,6,7}, C = {11,13,15} → B=C is false → result = {}
 	// Then: A > {} → (U \ A) ∪ {} = {4,5,6,7,11,13,15}
+}
+
+int main(void) {
+    std::vector<std::vector<int>> sets = {
+        {0, 1, 2, 3},
+        {4, 5, 6, 7},
+		{11,13,15}
+    };
+
+	//tests();
+	//testsMore();
+	testsComplex();
     return 0;
 }
