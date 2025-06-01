@@ -295,5 +295,23 @@ A Group is considered an **abelian group** (or commutative group) if he fullfill
 **Commutativity**: the order of the operands doesn’t matter
 **Mathematical notation**: ∀a, b ∈ G, a · b = b · a
 
+## Interlude - Morphism
+
+_For the next exercises we must understand Morphism_
+
+Morphism is the abstraction of a function. Basically, a morphism is a mapping of
+values from one structure to a structure of the same type, morphism **preserve** the structures.
+
+A morphism f that maps values from set A to set B is declared as follows:
+f : A → B
+
+If the morphism takes two arguments (or a vector in two dimensions) it is declared as
+follows:
+f : $A^2$ → B
+
+The composition operator can be applied to two morphisms. It is defined as follows:
+(f ◦ g)(x) = f(g(x))
+where f and g are two morphisms.
+
 ## ex10 - Cruve
 _Write a function (the inverse of a space-filling curve, used to encode spatial data into a line) that takes a pair of coordinates in two dimensions and assigns a unique value in the closed interval [0; 1] ∈ R._
