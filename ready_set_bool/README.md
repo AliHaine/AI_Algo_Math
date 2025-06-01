@@ -23,7 +23,7 @@ Let's say that we have 5 (0101) and 10 (1010). The expected result is 15 (1111).
 
 5 = 0101
 10 = 1010
--> First line we have 0 (for 5) and 1 (for 10) = 1 
+-> First line we have 0 (for 5) and 1 (for 10) = 1
 -> Second line 1 and 0 = 1
 -> Thrid line 0 and 1 = 1
 -> Last line 1 and 0 = 1
@@ -70,10 +70,10 @@ _Write a function that takes as input a string that contains a propositional for
 
 This exercice is not as difficult as it may seem at first. If you're unfamiliar with Reverse Polish Notation (RPN) you can [read more about it here](https://en.wikipedia.org/wiki/Reverse_Polish_notation)
 
-So the goal is to evaluate bitwise expressions written in RPN using specific symbol for operations. 
+So the goal is to evaluate bitwise expressions written in RPN using specific symbol for operations.
 Example:
 11| Result to 1, which is the equivalent of 1 | 1 (Disjunction, bitwise OR).
-More complexe example: 
+More complexe example:
 10|111=&=
 10| → 1 | 0 = 1
 11= → 1 == 1 = 1
@@ -87,7 +87,7 @@ _Write a function that takes as input a string that contains a propositional for
 
 A truth table is a diragram showing how the truth or falsity of a proposition varies with that of its components (in our case, variables). This concept is fundamental in many domains, especially in hardwar logic design and artificial intelligence.
 
-### Example 
+### Example
 _formula AB&C| equivalent to (A ∧ B) ∨ C_
 
 | A | B | C | = |
@@ -101,7 +101,7 @@ _formula AB&C| equivalent to (A ∧ B) ∨ C_
 | 1 | 1 | 0 | 1 |
 | 1 | 1 | 1 | 1 |
 
-The number of rows in the truth table is calculated as $2^N$. 
+The number of rows in the truth table is calculated as $2^N$.
 Where N is the number of distinct variables (in this case 3), so we have $2^3$ = 8 rows. Every possible combination of input values is precomputed.
 
 ### Algorithm to generate a Truth table
@@ -111,7 +111,7 @@ To build a truth table:
 - Compute the number of rows ($2^3$ = 8)
 - Start with the row | 0 | 0 | 0 |
 - For each step (from 0 to $2^n$-1), convert the step number to binary and use it to fill the table
-- 
+-
 Or conceptually:
 - Try to set a 1 at the rightmost possible position.
 - Reset all bits to the right of that position to 0.
@@ -177,7 +177,7 @@ formula in reverse polish notation and tells whether it is satisfiable_
 
 SAT-solver is an algorithm which aim to solve the boolean satisfiability problem.
 
-Given a Boolean expression, a SAT-solver explores all possible truth assignments to the variables and reports whether at least one assignment makes the expression evaluate to true. 
+Given a Boolean expression, a SAT-solver explores all possible truth assignments to the variables and reports whether at least one assignment makes the expression evaluate to true.
 If such an assignment exists, the formula is satisfiable, otherwise, it is unsatisfiable.
 
 Expression which will never be true, so unsatisfiable: A!A=
@@ -229,7 +229,7 @@ The powerset must contain a empty set, can be written ∅, and the entire given 
 
 We can calculat the unmber of subset with the formula $2^N$ where n is the number of variables in the initiale set.
 
-### Example 
+### Example
 
 For E = {A,B,C}, 3 elements, $2^3$ = 8 subset.
 
@@ -256,3 +256,44 @@ their interactions and purposes are different.
 
 In boolean operation, the operators evaluate true/false, whereas in Set-Theroy, the operators
 transform sets.
+
+## Interlude - Groups
+
+_For the next exercises we must understand Groups_
+
+A Group in mathematical context is a set which respect four mandatory rules (properties) and work with an operation
+
+| Symbol    | Description |
+|--------------|------------------------------------------|
+| `∀`      | Called "for all" or "for every", meaning that the rule must work for every possible combination  |
+| `∈`      | "Is in” or “belongs to”         |
+| `·`        | The Group operator             |
+| `∃` |  here is at least one value that makes this true |
+
+| Rule    | Description | Mathematical notation |
+|--------------|-----------------|---|
+| Closure     | Combining any two elements in the set gives a result that is also in the set  | ∀a, b ∈ G,(a· b) ∈ G |
+| Associativity     | The way you combine the element doens't matter     | ∀(a, b, c) ∈ $G^3$,   a · (b · c) = (a · b) · c |
+| Identity Element        | There's one special element that does nothing when combined      | ∃e ∈ G, ∀a ∈ G, e · a = a · e = a |
+| Inverses        | Every elements muse have a "partner" that undoes it and brings you back to the identity     | ∀a ∈ G, ∃b ∈ G, a · b = b · a = e |
+
+### Examples
+
+Let's consider the set A = [1, 2, 3] with the operation of addition.
+
+Closure❌: The Rule is broken, because,  for example, 3-1=4, and 4 is no in the set A.
+
+Associativity✅:  The rule hold. For example, (1+2)+3 = 6 and 1+(2+3) = 6; both give the same result.
+
+Identity Element❌:  The Rule is broken, the additive identity is 0, since a +0 = afor any a. But 0 is not in the set A.
+
+Inverses❌: The Rule is broken, For example, to find the inverse of 1 under addition, we need -1 (since 1 + (-1) = 0) but -1 is not in the set.
+
+Final conclusion: The set A breaks several rules, so A is not a Group under addition.
+
+A Group is considered an **abelian group** (or commutative group) if he fullfills one more condition:
+**Commutativity**: the order of the operands doesn’t matter
+**Mathematical notation**: ∀a, b ∈ G, a · b = b · a
+
+## ex10 - Cruve
+_Write a function (the inverse of a space-filling curve, used to encode spatial data into a line) that takes a pair of coordinates in two dimensions and assigns a unique value in the closed interval [0; 1] ∈ R._
