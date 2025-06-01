@@ -299,19 +299,19 @@ A Group is considered an **abelian group** (or commutative group) if he fullfill
 
 _For the next exercises we must understand Morphism_
 
-Morphism is the abstraction of a function. Basically, a morphism is a mapping of
-values from one structure to a structure of the same type, morphism **preserve** the structures.
+A morphism is an abstraction of a function. Basically, in algebra (like group theory), a morphism is a mapping from one algebraic structure to another of the same type,
+and it must preserve the structure (such as the operation of a group).
 
 A morphism f that maps values from set A to set B is declared as follows:
 f : A → B
 
-If the morphism takes two arguments (or a vector in two dimensions) it is declared as
-follows:
-f : $A^2$ → B
-
-The composition operator can be applied to two morphisms. It is defined as follows:
+We can also compose two morphisms. It is defined as follows:
 (f ◦ g)(x) = f(g(x))
-where f and g are two morphisms.
+where both f and g are two morphisms, and the result is also a morphism
+
+⚠️ A Morphism must map one element at a time, and must **preserve the strcuture** for example
+f : $A^2$ → B
+is not a Morphism, because we take two elements at one as input (try to map), and also we don't check for the structure preservation.
 
 ## ex10 - Cruve
 _Write a function (the inverse of a space-filling curve, used to encode spatial data into a line) that takes a pair of coordinates in two dimensions and assigns a unique value in the closed interval [0; 1] ∈ R._
