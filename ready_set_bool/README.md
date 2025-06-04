@@ -111,7 +111,7 @@ To build a truth table:
 - Compute the number of rows ($2^3$ = 8)
 - Start with the row | 0 | 0 | 0 |
 - For each step (from 0 to $2^n$-1), convert the step number to binary and use it to fill the table
--
+
 Or conceptually:
 - Try to set a 1 at the rightmost possible position.
 - Reset all bits to the right of that position to 0.
@@ -277,7 +277,7 @@ A Group in mathematical context is a set which respect four mandatory rules (pro
 | Identity Element        | There's one special element that does nothing when combined      | ∃e ∈ G, ∀a ∈ G, e · a = a · e = a |
 | Inverses        | Every elements muse have a "partner" that undoes it and brings you back to the identity     | ∀a ∈ G, ∃b ∈ G, a · b = b · a = e |
 
-### Examples
+### Example
 
 Let's consider the set A = [1, 2, 3] with the operation of addition.
 
@@ -299,19 +299,70 @@ A Group is considered an **abelian group** (or commutative group) if he fullfill
 
 _For the next exercises we must understand Morphism_
 
-A morphism is an abstraction of a function. Basically, in algebra (like group theory), a morphism is a mapping from one algebraic structure to another of the same type,
-and it must preserve the structure (such as the operation of a group).
+A morphism is an abstraction of a function. Basically, in algebra (like group theory), a morphism is a **mapping** from one algebraic structure to another of the same type,
+and it must **preserve the structure** (such as the operation of a group). Morphism can be applied to several structure type, but in our case
+we are only interested in group structure, the morphism name for that specific type of structure is called **homomorphism**.
 
 A morphism f that maps values from set A to set B is declared as follows:
 f : A → B
-
-We can also compose two morphisms. It is defined as follows:
-(f ◦ g)(x) = f(g(x))
-where both f and g are two morphisms, and the result is also a morphism
 
 ⚠️ A Morphism must map one element at a time, and must **preserve the strcuture** for example
 f : $A^2$ → B
 is not a Morphism, because we take two elements at one as input (try to map), and also we don't check for the structure preservation.
 
+We can also compose two morphisms. It is defined as follows:
+(f ◦ g)(x) = f(g(x))
+where both f and g are two morphisms, and the result is also a morphism
+
+### Composed morphism example
+
+g: ℤ → ℤ₆ defined by g(x) = x mod 6
+f: ℤ₆ → ℤ₃ defined by f(x) = x mod 3
+
+Then the composition is:  
+f ∘ g: ℤ → ℤ₃  
+defined by (f ∘ g)(x) = f(g(x)) = x mod 3
+
+Let x = 5
+
+g: ℤ → ℤ₆  
+g(5) = 5 mod 6 = 5
+
+f: ℤ₆ → ℤ₃  
+f(5) = 5 mod 3 = 2
+
+Therefore:  
+(f ∘ g)(5) = f(g(5)) = f(5) = 2
+
+### Properties of functions
+
+**Injective** (one-to-one)
+_A function is injective if different input give different outputs_
+
+**Surjective** (onto)
+_A function is surjective if every element in the codomain is used by some input_
+
+**Bijective**
+_A function is bijective if it is both injective and surjective_
+
+let f = [1, 2, 3, 4] and r = [a, b, c] (codomain)
+
+1 = a, 2 = b, 3 = c, 4 = a
+
+| Can be injective          | 	Can be surjective                  | 	Can be bijective       |
+|---------------------------|-------------------------------------|-------------------------|
+| ❌ 1 and 4 both output a | ✅ all elements of codomain are used | ❌ not injective |
+
+let a = [1, 2, 3] and b = [a, b, c]
+
+1 = a, 2 = b, 3 = c
+
+| Can be injective | 	Can be surjective         | 	Can be bijective                           |
+|------------------|----------------------------|---------------------------------------------|
+| ✅ unique outputs | ✅ all codomain values used | ✅ one-to-one and onto |
+
 ## ex10 - Cruve
 _Write a function (the inverse of a space-filling curve, used to encode spatial data into a line) that takes a pair of coordinates in two dimensions and assigns a unique value in the closed interval [0; 1] ∈ R._
+
+## ex11 - Inverse function
+_Write the inverse function f−1 of the function f from the previous exercise (so this time, this is a space-filling curve, used to decode data from a line into a space)._
