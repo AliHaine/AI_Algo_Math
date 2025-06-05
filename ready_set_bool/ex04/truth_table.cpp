@@ -57,5 +57,13 @@ void print_truth_table(std::string formula) {
 
 int main(void) {
     print_truth_table("A!");
+    std::cout << "------------------------------" << std::endl;
+    print_truth_table("AB!=");
+    std::cout << "------------------------------" << std::endl;
+    print_truth_table("AB=");
+    std::cout << "------------------------------" << std::endl;
+    print_truth_table("AB=C&");
+    std::cout << "------------------------------" << std::endl;
+    print_truth_table("AB=C&A|");
     return 0;
 }

@@ -23,8 +23,18 @@ std::vector<std::vector<int>> powerset(std::vector<int> &set) {
 }
 
 int main(void) {
-    std::vector<int> set = {1, 2, 3, 4};
+    std::vector<int> set = {};
     std::vector<std::vector<int>> res = powerset(set);
+    printSuperSet(res);
+    std::cout << "------------------------------" << std::endl;
+
+    set = {1};
+    res = powerset(set);
+    printSuperSet(res);
+    std::cout << "------------------------------" << std::endl;
+
+    set = {1, 2, 3, 4};
+    res = powerset(set);
     printSuperSet(res);
     return 0;
 }
