@@ -11,9 +11,6 @@ void print_header(std::map<char, int> &usedVar) {
     for (int i = 0; i <= usedVar.size(); i++)
         std::cout << "|---";
     std::cout << "|" << std::endl;
-    for (int i = 0; i <= usedVar.size(); i++)
-        std::cout << "| 0 ";
-    std::cout << "|" << std::endl;
 }
 
 void print_truth_table(std::string formula) {
@@ -36,13 +33,14 @@ void print_truth_table(std::string formula) {
 
     maxRows = power(2, usedVar.size());
     // Build formula
-    for (int i = 0; i < maxRows-1; i++) {
+    for (int i = 0; i < maxRows; i++) {
         for (auto it = usedVar.rbegin(); it != usedVar.rend(); ++it) {
+            if (i == 0)
+                break;
             if (it->second == 0) {
                 it->second = 1;
-                while (it-- != usedVar.rbegin()) {
+                while (it-- != usedVar.rbegin())
                     it->second = 0;
-                }
                 break;
             }
         }
@@ -58,6 +56,6 @@ void print_truth_table(std::string formula) {
 }
 
 int main(void) {
-    print_truth_table("AB&C|");
+    print_truth_table("A!");
     return 0;
 }

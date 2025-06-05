@@ -9,10 +9,10 @@ For this two exercices, we have to implement the operator + (addition) and * (mu
 ### Addition
 
 Doing binary addition is very easy and similar to decimal addition. It basically works the same way
-0 and 1 = 1
-1 and 0 = 1
-0 and 0 = 0
-1 + 1 = 0 (with a carry of 1) → which becomes 10 in binary
+`0 and 1 = 1`
+`1 and 0 = 1`
+`0 and 0 = 0`
+`1 + 1 = 0 (with a carry of 1) → which becomes 10 in binary`
 
 This is why we use:
 ^ (XOR) to compute the sum without carry
