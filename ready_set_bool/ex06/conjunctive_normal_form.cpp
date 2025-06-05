@@ -121,7 +121,7 @@ void fromTreeToStr(Node* node, std::string &formula) {
 std::string conjunctive_normal_form(std::string formula) {
 	std::string result;
 
-	Node* treeNNF = toNNF(treeBuilder(formula));
+	Node* treeNNF = toNNF(treeBuilder(formula, true));
 	Node* treeCNF = toCNF(treeNNF);
 	fromTreeToStr(treeCNF, result);
 

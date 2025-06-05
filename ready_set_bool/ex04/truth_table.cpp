@@ -19,9 +19,13 @@ void print_header(std::map<char, int> &usedVar) {
 void print_truth_table(std::string formula) {
     std::map<char, int> usedVar;
     std::string currentFormula = formula;
-    int maxRows = 0;
+    int maxRows;
 
     for (char c : formula) {
+		if (c == '0' || c == '1') {
+			std::cout << "The formula " << formula << " is not valid" << std::endl;
+			exit(1);
+		}
         if (c >= 'A' && c <= 'Z') {
             if (usedVar.count(c) == 0)
                 usedVar.insert({c, 0});
@@ -48,7 +52,7 @@ void print_truth_table(std::string formula) {
 
         for (auto it = usedVar.begin(); it != usedVar.end(); ++it)
             std::cout << it->second << " | ";
-        std::cout << calcFromTree(treeBuilder(currentFormula)) << " |" << std::endl;
+        std::cout << calcFromTree(treeBuilder(currentFormula, false)) << " |" << std::endl;
         currentFormula = formula;
     }
 }

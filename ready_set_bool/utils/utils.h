@@ -17,5 +17,5 @@ bool isUnary(char c);
 
 int power(int number, int power);
 
-bool isValidRPN(std::string formula);
+bool isValidRPN(const std::string &formula, bool mode);
 #endif

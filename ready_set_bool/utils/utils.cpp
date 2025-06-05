@@ -9,7 +9,7 @@ std::unordered_map<char, std::function<int(int, int)>> operator_map = {
 };
 
 bool isVariable(char c) {
-    return (c >= 'A' && c <= 'Z') || c == '0' || c == '1';
+    return (c >= 'A' && c <= 'Z');
 }
 
 bool isConstant(char c) {
@@ -31,10 +31,13 @@ int power(int number, int power) {
     return result;
 }
 
-bool isValidRPN(std::string formula) {
+bool isValidRPN(const std::string &formula, bool mode) {
     int stack_size = 0;
+	std::function<bool(char)> variableFunc = isConstant;
+	if (mode)
+		variableFunc = isVariable;
     for (char c : formula) {
-        if (isVariable(c))
+        if (variableFunc(c))
             stack_size++;
         else if (isOperator(c)) {
             if (stack_size < 2) return false;

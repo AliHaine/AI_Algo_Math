@@ -98,7 +98,7 @@ Node* treeBuilder(const std::string formula, std::vector<std::vector<int>> sets)
 	std::unordered_map<char, std::vector<int>> variableAndValues;
 	int index = 0;
 
-    if (!isValidRPN(formula)) {
+    if (!isValidRPN(formula, true)) {
         std::cout << "The formula " << formula << " is not valid" << std::endl;
         exit(1);
     }

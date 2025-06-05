@@ -407,3 +407,13 @@ A ⊂ [0,1] ⊂ ℝ
 Below is a clear visual explanation of this function
 
 ![curve function image](public/curve_function.png)
+
+The function takes two inputs, x and y, which are natural numbers between 0 and 65535 (i.e., 16-bit unsigned integers). It then combines these two values into a single 32-bit integer z by shifting x 16 bits to the left and adding y:
+
+z = x * $2^16$ + y
+
+Finally, the function normalizes z to produce a floating-point number between 0 and 1 by dividing it by the maximum 32-bit unsigned integer value
+
+`z / 4294967295` 
+
+where 4294967295 is `$2^32$ - 1`

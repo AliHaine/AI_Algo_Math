@@ -54,7 +54,7 @@ void from_tree_to_str(Node* node, std::string &formula) {
 
 std::string negation_normal_form(std::string formula) {
     std::string convertedFormula;
-	Node* converted = toNNF(treeBuilder(formula));
+	Node* converted = toNNF(treeBuilder(formula, true));
 	from_tree_to_str(converted, convertedFormula);
     return convertedFormula;
 }

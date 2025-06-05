@@ -43,16 +43,16 @@ int calcFromTree(Node* node) {
         return operator_map[node->value](calcFromTree(node->left), calcFromTree(node->right));
 }
 
-Node* treeBuilder(const std::string formula) {
+Node* treeBuilder(const std::string &formula, bool mode) {
     std::stack<Node*> stack;
 
-    if (!isValidRPN(formula)) {
+    if (!isValidRPN(formula, mode)) {
         std::cout << "The formula " << formula << " is not valid" << std::endl;
         exit(1);
     }
 
     for (char c : formula) {
-        if (isVariable(c)) {
+        if (isVariable(c) || isConstant(c)) {
             stack.push(new Node(c));
         } else if (isOperator(c)) {
             Node* childRight = stack.top(); stack.pop();

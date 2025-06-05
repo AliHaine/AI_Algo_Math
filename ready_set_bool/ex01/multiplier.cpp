@@ -1,9 +1,8 @@
 #include <iostream>
 #include <cstdlib>
-#include <bitset>
-#include <time.h>
+#include <ctime>
 
-int adder(unsigned int a, unsigned int b) {
+unsigned int adder(unsigned int a, unsigned int b) {
     unsigned int carry;
     while (b != 0) {
         carry = (a & b) << 1;
@@ -13,7 +12,7 @@ int adder(unsigned int a, unsigned int b) {
     return a;
 }
 
-int multiplier(unsigned int a, unsigned int b) {
+unsigned int multiplier(unsigned int a, unsigned int b) {
     unsigned int result = 0;
     while (b != 0) {
         if (b & 1)
@@ -25,7 +24,7 @@ int multiplier(unsigned int a, unsigned int b) {
 }
 
 int main(void) {
-    srand((unsigned)time(NULL));
+    srand((unsigned)time(0));
     for (int i = 0; i < 5; i++) {
         unsigned int a = rand() % 11;
         unsigned int b = rand() % 11;

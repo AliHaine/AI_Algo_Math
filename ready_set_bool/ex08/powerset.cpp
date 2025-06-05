@@ -1,16 +1,16 @@
 #include <iostream>
 #include <vector>
 
-void printSuperSet(std::vector<std::vector<int>> superSet) {
-    for (std::vector<int> vec : superSet) {
+void printSuperSet(std::vector<std::vector<int>> &superSet) {
+    for (const auto& vec : superSet) {
         for (int i : vec)
             std::cout << i << " ";
         std::cout << std::endl;
     }
 }
 
-std::vector<std::vector<int>> powerset(std::vector<int> set) {
-    int size = set.size();
+std::vector<std::vector<int>> powerset(std::vector<int> &set) {
+    auto size = set.size();
     std::vector<std::vector<int>> result = {};
 
     for (int i = 0; i < (1 << size); i++) {
