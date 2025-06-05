@@ -85,7 +85,7 @@ Final result 1
 
 _Write a function that takes as input a string that contains a propositional formula in reverse polish notation, and writes its truth table on the standard output_
 
-A truth table is a diragram showing how the truth or falsity of a proposition varies with that of its components (in our case, variables). This concept is fundamental in many domains, especially in hardwar logic design and artificial intelligence.
+A truth table is a diagram showing how the truth or falsity of a proposition varies with that of its components (in our case, variables). This concept is fundamental in many domains, especially in hardwar logic design and artificial intelligence.
 
 ### Example
 _formula AB&C| equivalent to (A ∧ B) ∨ C_
@@ -192,6 +192,16 @@ To do this exercice; we have to understand several thinks.
 
 ### Set
 
+_Mathematical Sets and Their C Language Counterparts_
+
+| Symbol | name  | Closest type in the C language |
+|--------|-------|--------------------------------|
+| `ℕ`    | Natural numbers | unsigned int                   |
+| `ℤ`    | Integers | int                            |
+| `ℚ`    | Rational numbers| float                          |
+| `ℝ`    | Real numbers  | float|
+| `ℂ`    | Complex numbers  | complex |
+
 A **set** is an unordered collection of unique elements
 quick example;
 set = [1,2,3] This is a set of integer with the int 1 2 and 3
@@ -270,12 +280,12 @@ A Group in mathematical context is a set which respect four mandatory rules (pro
 | `·`        | The Group operator             |
 | `∃` |  here is at least one value that makes this true |
 
-| Rule    | Description | Mathematical notation |
-|--------------|-----------------|---|
-| Closure     | Combining any two elements in the set gives a result that is also in the set  | ∀a, b ∈ G,(a· b) ∈ G |
+| Rule    | Description | Mathematical notation                           |
+|--------------|-----------------|-------------------------------------------------|
+| Closure     | Combining any two elements in the set gives a result that is also in the set  | ∀a, b ∈ G,(a · b) ∈ G                           |
 | Associativity     | The way you combine the element doens't matter     | ∀(a, b, c) ∈ $G^3$,   a · (b · c) = (a · b) · c |
-| Identity Element        | There's one special element that does nothing when combined      | ∃e ∈ G, ∀a ∈ G, e · a = a · e = a |
-| Inverses        | Every elements muse have a "partner" that undoes it and brings you back to the identity     | ∀a ∈ G, ∃b ∈ G, a · b = b · a = e |
+| Identity Element        | There's one special element that does nothing when combined      | ∃e ∈ G, ∀a ∈ G, e · a = a · e = a               |
+| Inverses        | Every elements muse have a "partner" that undoes it and brings you back to the identity     | ∀a ∈ G, ∃b ∈ G, a · b = b · a = e               |
 
 ### Example
 
@@ -361,8 +371,39 @@ let a = [1, 2, 3] and b = [a, b, c]
 |------------------|----------------------------|---------------------------------------------|
 | ✅ unique outputs | ✅ all codomain values used | ✅ one-to-one and onto |
 
-## ex10 - Cruve
-_Write a function (the inverse of a space-filling curve, used to encode spatial data into a line) that takes a pair of coordinates in two dimensions and assigns a unique value in the closed interval [0; 1] ∈ R._
 
-## ex11 - Inverse function
-_Write the inverse function f−1 of the function f from the previous exercise (so this time, this is a space-filling curve, used to decode data from a line into a space)._
+## Interlude - Space-Filling Curves
+_For the next exercises we must understand Space-filling curve_
+
+In mathematics, a space-filling curve is a continuous curve whose range reaches every point in a higher dimensional region (2D or 3D).
+That means the curve must pass through every point in the space, doing so **continuously**. In other words, the entire path can be drawn in one stroke, without lifting your pen.
+
+A simple example using 4 squares with the Hilbert Curve
+
+![hilbert 4 image](public/hilbert4.png)
+
+In this example, the curve passes through the center of each square in a specific order, covering the entire 2d space.
+Order:
+
+|||
+|-|-|
+|1|2|
+|0|3|
+
+More complex example using 16 squares with the Hilbert Curve
+
+![hilbert 16 image](public/hilbert16.png)
+
+## ex10 and ex11 - Curve and Inverse
+_ex10: Write a function (the inverse of a space-filling curve, used to encode spatial data into a line) that takes a pair of coordinates in two dimensions and assigns a unique value in the closed interval [0; 1] ∈ R._
+
+_ex11: Write the inverse function f−1 of the function f from the previous exercise (so this time, this is a space-filling curve, used to decode data from a line into a space)._
+
+The subject give the following function 
+f: (x, y) ∈ $[[0; 2^16 − 1]]^2$ ⊂ $ℕ^2$ → A
+with
+A ⊂ [0,1] ⊂ ℝ
+
+Below is a clear visual explanation of this function
+
+![curve function image](public/curve_function.png)
