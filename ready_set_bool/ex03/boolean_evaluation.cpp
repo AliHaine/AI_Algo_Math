@@ -21,7 +21,7 @@ void tests_simple() {
             "10&", "11&",      // AND
             "10|", "00|",      // OR
             "10^", "11^",      // XOR
-            "11=", "01=",      // EQUAL
+            "11=", "01=", "00=", // EQUAL
             "10>", "01>", "11>", "00>", // IMPLICATION
             "10|!", "10>!1="   // Complex expressions
     };
