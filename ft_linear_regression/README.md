@@ -2,6 +2,17 @@
 
 _Code a program that can predict the price of a car using linear regression with a gradient algorithm_
 
+## 🚀 Main Goals
+- Understand the principles of linear regression.
+- Implement gradient descent to optimize model parameters.
+- Predict outcomes based on input data.
+
+## 📂 Contents
+- Data preprocessing and normalization.
+- Linear regression model implementation.
+- Gradient descent optimization.
+- Prediction and evaluation of car prices.
+
 # Line formula
 
 To create a linear regression, you need to understand how to create a simple equation of a straight line, here the formula of a 2d line

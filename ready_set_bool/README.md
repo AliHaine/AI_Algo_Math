@@ -2,6 +2,16 @@
 
 _Computer-related mathematics with Boolean Algebra and Sets Theory_
 
+## 🚀 Main Goals
+- Understand the fundamentals of Boolean algebra.
+- Manipulate sets and logical operations.
+- Apply concepts to computational problems.
+
+## 📂 Contents
+- Boolean operations and truth tables.
+- Set operations and relations.
+- Problem-solving exercises using Boolean logic.
+
 ## ex00 and ex01 - Bitwise
 
 For this two exercices, we have to implement the operator + (addition) and * (multiplication) (with positif numbers) using bitwise operator, in this case, ^ and <<.
