@@ -4,4 +4,4 @@ This is my math notebook.
 
 ## Table of contents
 
-[Logarith](/notebook/LOGARITHM.md)
+[Logarithm](/notebook/LOGARITHM.md)

@@ -8,7 +8,7 @@ A logarithm grows continuously, but as the input gets larger, growth slows down.
 
 In fact, a logarithm answer the question: **To what power must I raise the base to get this number?**.
 
-$a^b = c \;\;\Longleftrightarrow\;\; \log_{a}(c) = b$
+$a^b = c \\\Longleftrightarrow\\ \log_{a}(c) = b$
 
 In other words: a logarithm is the inverse of an exponential.
 
@@ -16,7 +16,7 @@ In other words: a logarithm is the inverse of an exponential.
 
 The fundamental formula is
 
-$a^b = c \;\;\Longleftrightarrow\;\; \log_{a}(c) = b \;\;\Longleftrightarrow\;\; log_a(c) = \frac{ln(c)}{ln(a)}$
+$a^b = c \\\Longleftrightarrow\\ \log_{a}(c) = b \;\;\Longleftrightarrow\;\; log_a(c) = \frac{ln(c)}{ln(a)}$
 
 Iteration formula using Newton's method, _(Using $e$)_
 
@@ -26,9 +26,9 @@ $y_{n+1} = y_n - 1 + \frac{x}{e^{y_n}}$
 
 ### Bases
 
-There are 2 bases most commonly used:
+There are 3 bases most commonly used:
 
-- base $e ≈ 2.718$ (natural log, ln) → Mathematics, calculus, continuous growth.
+- Base $e ≈ 2.718$ (natural log, ln) → Mathematics, calculus, continuous growth.
 - Base 2($log_2$) → computer science (binary tress, complexity like $O(logn)$).
 - Base 10($log_10$) → engineering, scales, orders of magnitude (decibels, pH)
 
@@ -42,7 +42,7 @@ $log_a(c) = \frac{ln(c)}{ln(a)}$
 
 We want
 
-$2^3 = 8 \;\;\Longleftrightarrow\;\; \log_{2}(8) = 3$
+$2^3 = 8 \\\Longleftrightarrow\\ \log_{2}(8) = 3$
 
 ### Step 1: Approximate ln(8)
 
@@ -52,7 +52,7 @@ $y1 = 2 - 1 + \frac{8}{e^{2}} ≈ 1 + \frac{8}{7.3875} ≈ 2.0829$
 
 Next iteration 
 
-$y1 = 2.0829 - 1 + \frac{8}{e^{2.0829}} ≈ 1.0829 + \frac{8}{8.0829} ≈ 2.0797$
+$y2 = 2.0829 - 1 + \frac{8}{e^{2.0829}} ≈ 1.0829 + \frac{8}{8.0829} ≈ 2.0797$
 
 At this point, values are very close, so
 
