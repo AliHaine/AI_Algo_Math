@@ -12,7 +12,9 @@ the worst-case growth rate of the algorithm.
 
 In other words, Big-O ignores machine details and constant factors, focusing only on how fast the algorithm scales as the input grows.
 
-## Formula 
+## Formula
+
+$O(g(n)) = \{\, f(n) \mid \exists c > 0,\; \exists n_0 > 0 \;\text{s.t.}\; \forall n \ge n_0,\; f(n) \le c \cdot g(n)\,\}$
 
 ## General notes
 

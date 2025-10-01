@@ -4,6 +4,8 @@ This is my math notebook.
 
 ## Table of contents
 
+[SetBuilder](/notebook/SetBuilder.md)
+
 [Logarithm](/notebook/Logarithm.md)
 
 [BigO](/notebook/BigO.md)
