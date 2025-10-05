@@ -6,7 +6,7 @@ Set-builder notation is a concise way to describe sets by **specifying propertie
 
 This is a fundamental concept in mathematics, especially for **understanding functions, relations, logic, and advanced topics like combinatorics and set theory**, because it allows us to define sets rigorously and concisely without listing every element.
 
-## General
+## General notes
 
 $\{ \text{expression} \mid \text{conditions} \}$
 
