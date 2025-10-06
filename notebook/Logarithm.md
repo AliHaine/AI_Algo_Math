@@ -8,7 +8,7 @@ A logarithm grows continuously, but as the input gets larger, growth slows down.
 
 In fact, a logarithm answer the question: **To what power must I raise the base to get this number?**.
 
-$a^b = c \\\Longleftrightarrow\\ \log_{a}(c) = b$
+$a^b = c ⇔ \log_{a}(c) = b$
 
 In other words: a logarithm is the inverse of an exponential.
 
@@ -16,7 +16,7 @@ In other words: a logarithm is the inverse of an exponential.
 
 The fundamental formula is
 
-$a^b = c \\\Longleftrightarrow\\ \log_{a}(c) = b \;\;\Longleftrightarrow\;\; log_a(c) = \frac{ln(c)}{ln(a)}$
+$a^b = c ⇔ \log_{a}(c) = b ⇔ log_a(c) = \frac{ln(c)}{ln(a)}$
 
 Iteration formula using Newton's method, _(Using $e$)_
 
@@ -42,7 +42,7 @@ $log_a(c) = \frac{ln(c)}{ln(a)}$
 
 We want
 
-$2^3 = 8 \\\Longleftrightarrow\\ \log_{2}(8) = 3$
+$2^3 = 8 ⇔ \log_{2}(8) = 3$
 
 ### Step 1: Approximate ln(8)
 

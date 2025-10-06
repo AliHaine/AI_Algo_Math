@@ -12,7 +12,6 @@ Learn, understand and create programs that transform matrices and linear transfo
 - Determinant and inverse calculation.
 - Applications to geometric transformations.
 
-
 Mathematical concept used for this project [Vector](https://github.com/AliHaine/AI_Algo_Math/tree/main/notebook/Vector.md), [SetBuilder](https://github.com/AliHaine/AI_Algo_Math/tree/main/notebook/SetBuilder.md), [BigO](https://github.com/AliHaine/AI_Algo_Math/tree/main/notebook/BigO.md)
 
 ## ex00 : add, subtract and scale
