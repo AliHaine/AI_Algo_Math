@@ -1,4 +1,5 @@
 #include  "../libs/vector.hpp"
+#include "../libs/matrix.hpp"
 
 void vectorTests() {
 	auto v = Vector<int>::from({1, 2, 3});
@@ -23,8 +24,19 @@ void vectorTests() {
 	vd.print();
 }
 
+void matrixTests() {
+	auto m = Matrix<int>::from({
+		{ 1, 2, 3 },
+		{ 10, 5, 3 },
+	});
+	m.print();
+
+
+}
+
 int main() {
 	vectorTests();
+	matrixTests();
 
 	return 0;
 }

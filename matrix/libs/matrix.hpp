@@ -1,0 +1,84 @@
+#ifndef MATRIX_HPP
+#define MATRIX_HPP
+
+#include "vector.hpp"
+
+template <typename K>
+struct Matrix{
+	Vector<Vector<K>>	mat;
+	size_t				length;
+
+	static Matrix<K>	from(std::initializer_list<std::initializer_list<K>>);
+
+	const int			getSize() const;
+	void				print();
+	void				convertToMatrix();
+	bool				isSquare();
+
+	void				pushb(const Vector<K>&);
+
+	void				add(const Matrix<K>&);
+	void				sub(const Matrix<K>&);
+	void				scl(const K&);
+};
+
+template <typename K>
+Matrix<K> Matrix<K>::from(std::initializer_list<std::initializer_list<K>> initializers) {
+	Matrix<K> m;
+	m.length = initializers.begin()->size();
+	std::cout << "A new Matrix is creating.. with row size " << m.length << std::endl;
+	for (const std::initializer_list<K>& initializer : initializers) {
+		Vector<K> newVec;
+		for (const K& val : initializer) {
+			newVec.pushb(val);
+		}
+		if (newVec.getSize() != m.length)
+			fatalError("The size of rows are not equals in a matrix");
+		m.pushb(newVec);
+	}
+	return m;
+}
+
+
+// Utils
+template <typename K>
+const int Matrix<K>::getSize() const {
+	return this->mat.size();
+}
+
+template <typename K>
+void Matrix<K>::print() {
+	for (int y = 0; y < this->mat.getSize(); y++) {
+		std::cout << '[';
+		const Vector<K> xVec = this->mat.vec.at(y);
+		for (size_t x = 0; x < xVec.vec.size(); ++x) {
+			std::cout << xVec.vec[x];
+			if (x != xVec.vec.size() - 1)
+				std::cout << ", ";
+		}
+		std::cout << ']' << std::endl;
+	}
+}
+
+template <typename K>
+void Matrix<K>::pushb(const Vector<K>& newVec) {
+	this->mat.pushb(newVec);
+}
+
+// Scalar
+template <typename K>
+void Matrix<K>::add(const Matrix<K>& vecTarget) {
+
+}
+
+template <typename K>
+void Matrix<K>::sub(const Matrix<K>& vecTarget) {
+
+}
+
+template <typename K>
+void Matrix<K>::scl(const K& scalar) {
+
+}
+
+#endif
