@@ -14,15 +14,18 @@ This is my math notebook.
 
 ## Common symbols
 
-| Symbol | Name                        | Meaning                                                                  | Example                              |
-|--------|-----------------------------|--------------------------------------------------------------------------|--------------------------------------|
-| ∃      | Existential quantifier      | "There exists" (at least one)                                            | ∃x > 0 : x² = 4 → true for x=2 or -2 |
-| ∀      | Universal quantifier        | "For all" (every case)                                                   | ∀x > 0 : x² > 0                      |
-| ∈      | Element of                  | "is in" / "belongs to"                                                   | 3 ∈ {1,2,3}                          |
-| ∉      | Not element of              | "is not in"                                                              | 5 ∉ {1,2,3}                          |
-| ⊂      | Subset                      | One set contained in another                                             | {1,2} ⊂ {1,2,3}                      |
-| ⋅      | Multiplication dot          | Safer than "×" symbol                                                    | c ⋅ n = c × n                        |
-| ∣      | Such that (set builder) | Restricts set definition { stuff we want \|  condition it must satisfy } | {x ∣ x > 0} → all x > 0 |
+_Mostly in linear algebra_
+
+| Symbol | Name                    | Meaning                                                                 | Example                              |
+|--------|-------------------------|-------------------------------------------------------------------------|--------------------------------------|
+| ∃      | Existential quantifier  | "There exists" (at least one)                                           | ∃x > 0 : x² = 4 → true for x=2 or -2 |
+| ∀      | Universal quantifier    | "For all" (every case)                                                  | ∀x > 0 : x² > 0                      |
+| ∈      | Element of              | "is in" / "belongs to"                                                  | 3 ∈ {1,2,3}                          |
+| ∉      | Not element of          | "is not in"                                                             | 5 ∉ {1,2,3}                          |
+| ⊂      | Subset                  | One set contained in another                                            | {1,2} ⊂ {1,2,3}                      |
+| ⋅      | Multiplication dot      | Safer than "×" symbol                                                   | c ⋅ n = c × n                        |
+| ∣      | Such that (set builder) | Restricts set definition { stuff we want \|  condition it must satisfy } | {x ∣ x > 0} → all x > 0              |
+| λ      | Represent scalar        | Used to represent a scalar                                              | λu                                   |
 
 ## Number Systems
 

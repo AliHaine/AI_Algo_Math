@@ -27,7 +27,7 @@ struct Vector{
 
 template <typename K>
 Vector<K> Vector<K>::from(std::initializer_list<K> values) {
-	std::cout << "A new vector is creating.." << std::endl;
+	cout << "A new vector is creating.." << endl;
 	Vector<K> v;
 	for (const K& val : values)
 		v.pushb(val);
@@ -54,13 +54,13 @@ const int Vector<K>::getSize() const {
 template <typename K>
 void Vector<K>::print() {
 	for (const K& val : this->vec)
-		std::cout << '[' << val << ']' << std::endl;
-	std::cout << "------------" << std::endl;
+		cout << '[' << val << ']' << endl;
+	cout << "------------" << endl;
 }
 
 template <typename K>
 void Vector<K>::convertToMatrix() {
-	std::cout << "convertToMatrix called\n";
+	cout << "convertToMatrix called\n";
 }
 
 template <typename K>
@@ -71,7 +71,7 @@ void Vector<K>::pushb(K val) {
 // Scalar
 template <typename K>
 void Vector<K>::add(const Vector<K>& vecTarget) {
-	std::cout << "Add operation called" << std::endl;
+	cout << "Add operation called" << endl;
 	if (this->getSize() != vecTarget.getSize())
 		fatalError("The size of the vectors are not equals for add operation");
 
@@ -82,7 +82,7 @@ void Vector<K>::add(const Vector<K>& vecTarget) {
 
 template <typename K>
 void Vector<K>::sub(const Vector<K>& vecTarget) {
-	std::cout << "Sub operation called " << std::endl;
+	cout << "Sub operation called " << endl;
 	if (this->getSize() != vecTarget.getSize())
 		fatalError("The size of the vectors are not equals for sub operation");
 
@@ -93,7 +93,7 @@ void Vector<K>::sub(const Vector<K>& vecTarget) {
 
 template <typename K>
 void Vector<K>::scl(const K& scalar) {
-	std::cout << "Scale operation called" << std::endl;
+	cout << "Scale operation called" << endl;
 	for (int i = 0 ; i < this->getSize(); i++) {
 		this->vec.at(i) *= scalar;
 	}

@@ -8,7 +8,7 @@ struct Matrix{
 	Vector<Vector<K>>	mat;
 	size_t				length;
 
-	static Matrix<K>	from(std::initializer_list<std::initializer_list<K>>);
+	static Matrix<K>	from(initializer_list<initializer_list<K>>);
 
 	const size_t		getSize() const;
 	void				print();
@@ -23,11 +23,11 @@ struct Matrix{
 };
 
 template <typename K>
-Matrix<K> Matrix<K>::from(std::initializer_list<std::initializer_list<K>> initializers) {
+Matrix<K> Matrix<K>::from(initializer_list<initializer_list<K>> initializers) {
 	Matrix<K> m;
 	m.length = initializers.begin()->size();
-	std::cout << "A new Matrix is creating.. with row size " << m.length << std::endl;
-	for (const std::initializer_list<K>& initializer : initializers) {
+	cout << "A new Matrix is creating.. with row size " << m.length << endl;
+	for (const initializer_list<K>& initializer : initializers) {
 		Vector<K> newVec;
 		for (const K& val : initializer) {
 			newVec.pushb(val);
@@ -49,14 +49,14 @@ const size_t Matrix<K>::getSize() const {
 template <typename K>
 void Matrix<K>::print() {
 	for (int y = 0; y < this->mat.getSize(); y++) {
-		std::cout << '[';
+		cout << '[';
 		const Vector<K> xVec = this->mat.vec.at(y);
 		for (size_t x = 0; x < xVec.vec.size(); ++x) {
-			std::cout << xVec.vec[x];
+			cout << xVec.vec[x];
 			if (x != xVec.vec.size() - 1)
-				std::cout << ", ";
+				cout << ", ";
 		}
-		std::cout << ']' << std::endl;
+		cout << ']' << endl;
 	}
 }
 
