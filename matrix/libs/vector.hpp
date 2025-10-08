@@ -23,6 +23,8 @@ struct Vector{
 	void				sub(const Vector<K>&);
 	void				scl(const K&);
 
+    K                    dot(const Vector<K>&);
+
 };
 
 template <typename K>
@@ -97,6 +99,19 @@ void Vector<K>::scl(const K& scalar) {
 	for (int i = 0 ; i < this->getSize(); i++) {
 		this->vec.at(i) *= scalar;
 	}
+}
+
+//other
+template <typename K>
+K Vector<K>::dot(const Vector<K>& v2) {
+    if (this->getSize() != v2.getSize())
+        fatalError("The size of the vectors are not equals for dot operation");
+
+    K result = 0;
+    for (size_t i = 0 ; i < this->getSize(); i++) {
+        result += this->vec.at(i) * v2.at(i);
+    }
+    return result;
 }
 
 #endif
