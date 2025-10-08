@@ -31,7 +31,21 @@ void matrixTests() {
 	});
 	m.print();
 
+	auto m2 = Matrix<int>::from({
+		   { 3, 2, 1 },
+		   { 9, 4, 3 },
+	});
+	m2.print();
 
+	m.add(m2);
+
+	m.print();
+
+	m.scl(2);
+	m.print();
+
+	m.sub(m2);
+	m.print();
 }
 
 int main() {

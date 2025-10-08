@@ -11,6 +11,8 @@ struct Vector{
 
 	static Vector<K>	from(std::initializer_list<K>);
 
+	K&					at(const size_t);
+	const K&			at(const size_t) const;
 	const int			getSize() const;
 	void				print();
 	void				convertToMatrix();
@@ -34,6 +36,16 @@ Vector<K> Vector<K>::from(std::initializer_list<K> values) {
 
 
 // Utils
+template <typename K>
+K& Vector<K>::at(const size_t i) {
+	return this->vec.at(i);
+}
+
+template <typename K>
+const K& Vector<K>::at(const size_t i) const {
+	return this->vec.at(i);
+}
+
 template <typename K>
 const int Vector<K>::getSize() const {
 	return this->vec.size();

@@ -10,7 +10,7 @@ struct Matrix{
 
 	static Matrix<K>	from(std::initializer_list<std::initializer_list<K>>);
 
-	const int			getSize() const;
+	const size_t		getSize() const;
 	void				print();
 	void				convertToMatrix();
 	bool				isSquare();
@@ -42,8 +42,8 @@ Matrix<K> Matrix<K>::from(std::initializer_list<std::initializer_list<K>> initia
 
 // Utils
 template <typename K>
-const int Matrix<K>::getSize() const {
-	return this->mat.size();
+const size_t Matrix<K>::getSize() const {
+	return this->mat.vec.size();
 }
 
 template <typename K>
@@ -67,18 +67,33 @@ void Matrix<K>::pushb(const Vector<K>& newVec) {
 
 // Scalar
 template <typename K>
-void Matrix<K>::add(const Matrix<K>& vecTarget) {
+void Matrix<K>::add(const Matrix<K>& matTarget) {
+	if (matTarget.getSize() != this->getSize())
+		fatalError("The size of these two matrix are not the same..");
+	if (matTarget.length != this->length)
+		fatalError("The length of these two matrix rows are not the same..");
 
+	for (size_t i = 0; i < this->getSize(); i++) {
+		Vector<K>& currVec = this->mat.at(i);
+		currVec.add(matTarget.mat.at(i));
+	}
 }
 
 template <typename K>
-void Matrix<K>::sub(const Matrix<K>& vecTarget) {
+void Matrix<K>::sub(const Matrix<K>& matTarget) {
+	if (matTarget.getSize() != this->getSize())
+		fatalError("The size of these two matrix are not the same..");
+	if (matTarget.length != this->length)
+		fatalError("The length of these two matrix rows are not the same..");
 
+	for (size_t i = 0; i < this->getSize(); i++)
+		this->mat.at(i).sub(matTarget.mat.at(i));
 }
 
 template <typename K>
 void Matrix<K>::scl(const K& scalar) {
-
+	for (size_t i = 0; i < this->getSize(); i++)
+		this->mat.at(i).scl(scalar);
 }
 
 #endif
