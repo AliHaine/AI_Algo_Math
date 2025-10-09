@@ -4,7 +4,7 @@
 #include  "../libs/vector.hpp"
 
 template<typename K>
-Vector<K> linear_combination(initializer_list<Vector<K>> vectors, initializer_list<K> coefs) {
+Vector<K> linear_combination(const initializer_list<Vector<K>>& vectors, const initializer_list<K>& coefs) {
     Vector<K> res;
 
     if (vectors.size() != coefs.size())

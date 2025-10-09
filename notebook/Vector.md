@@ -18,9 +18,7 @@ In linear algebra, a vector is an element of a vector space. It can be represent
 This makes vectors useful for geometry physics, computer graphics, machine learning, and more, since they can describe directions,
 forces, velocities, colors, or even abstract data.
 
-## Examples
-
-### Basic example
+## Addition and scalar 
 
 The simplest example of a vector is in the 2D coordinate system. Here, a vector has two components:
 
@@ -70,4 +68,38 @@ $SA = S ⋅ A =  [3 ⋅ 1, \ 3 ⋅ 1] = [3, 3]$
 Which result by a new vector AS (A3) = [3, 3]
 
 ![basic log](public/vector/vectorscalar_res.png)
+
+## Linear combination
+
+A linear combination is a fundamental concept too when working with for vectors.
+Simply put, we take a list of vectors and a list of coefficients (scalars).
+Each scalar is multiplied by its corresponding vector, and then all the resulsts are added together.
+
+⚠️ Both the vector list and the coefficient list must have the **same size**.
+
+### Example
+
+Let's take  
+
+vectors = [[1, 2, 3], [3, 2, 1], [3, 3, 3]]
+
+coefs = [1, 2, 3]
+
+Firstly, multiply each vector by its corresponding coefficient
+
+1 * [1, 2, 3] = [1, 2, 3]
+
+2 * [3, 2, 1] = [6, 4, 2]
+
+3 * [3, 3, 3] = [9, 9, 9]
+
+Then, add the results component-wise
+
+1 + 6 + 9 = 16 
+2 + 4 + 9 = 15
+3 + 2 + 9 = 14
+
+Final vector: [16, 15, 14]
+
+![linear_comb](public/vector/linear_comb.png)
 
