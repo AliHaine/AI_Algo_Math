@@ -4,6 +4,8 @@ This is my math notebook.
 
 ## Table of contents
 
+[Affine function](/notebook/AffineFunction.md)
+
 [Vector](/notebook/Vector.md)
 
 [SetBuilder](/notebook/SetBuilder.md)
